@@ -30,8 +30,23 @@ class ProposalController extends Controller
             ]);
         }
 
+        // 1. Currency logic
+        $targetCurrency = $request->input('currency', 'USD');
+        $currencySymbols = [ 'USD' => '$', 'INR' => '₹', 'EUR' => '€', 'GBP' => '£', 'AED' => 'د.إ', 'SAR' => 'ر.س', 'QAR' => 'ر.ق', 'KWD' => 'د.ك' ];
+        $currencyRates = [ 'USD' => 1, 'INR' => 83.2, 'EUR' => 0.92, 'GBP' => 0.79, 'AED' => 3.67, 'SAR' => 3.75, 'QAR' => 3.64, 'KWD' => 0.31 ];
+        
+        $currencySymbol = $currencySymbols[$targetCurrency] ?? '$';
+        $conversionRate = $currencyRates[$targetCurrency] ?? 1;
+
+        // Custom formatter for the PDF view
+        $formatCurrency = function($amt) use ($currencySymbol, $conversionRate, $targetCurrency) {
+            $val = ($amt ?? 0) * $conversionRate;
+            $decimals = ($targetCurrency === 'KWD' ? 3 : 0);
+            return $currencySymbol . number_format($val, $decimals);
+        };
+
         // 1. Generate PDF
-        $pdf = Pdf::loadView('pdf.proposal', compact('calculation'));
+        $pdf = Pdf::loadView('pdf.proposal', compact('calculation', 'formatCurrency', 'targetCurrency'));
         
         // 2. Define storage path
         $fileName = 'proposal_' . $calculationId . '_' . Str::random(8) . '.pdf';

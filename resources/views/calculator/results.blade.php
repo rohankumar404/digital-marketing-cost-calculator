@@ -160,7 +160,7 @@
                 {{-- Total Cost Card (Always Visible) --}}
                 <div class="card highlight-card">
                     <div class="label">Total Monthly Investment</div>
-                    <div class="big-number">${{ number_format($calculation->total_cost) }}</div>
+                    <div class="big-number" x-text="$store.mapsily.format({{ $calculation->total_cost }})">${{ number_format($calculation->total_cost) }}</div>
                     <div class="sub-value">Estimated management & ad spend combined</div>
                     
                     @if(!$isGuest && !$isOverLimit && $calculation->strategy_suggestion)
@@ -177,7 +177,9 @@
                         </div>
                         <div class="metric-box">
                             <span class="label" style="color:#aaa">Budget Rec.</span>
-                            <span class="metric-val">{{ $calculation->budget_recommendation ?: '$'.number_format($calculation->total_cost*0.9).' - $'.number_format($calculation->total_cost*1.2) }}</span>
+                            <span class="metric-val" x-text="$store.mapsily.format({{ $calculation->total_cost * 0.9 }}) + ' - ' + $store.mapsily.format({{ $calculation->total_cost * 1.2 }})">
+                                {{ '$'.number_format($calculation->total_cost*0.9).' - $'.number_format($calculation->total_cost*1.2) }}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -208,7 +210,7 @@
                             <div class="form-group" style="margin-bottom:25px">
                                 <div style="display:flex; justify-content:space-between; margin-bottom:10px">
                                     <span style="font-weight:600">Simulated Monthly Budget</span>
-                                    <span style="color:#85f43a; font-weight:800; font-size:18px" x-text="'$' + Number(simBudget).toLocaleString()"></span>
+                                    <span style="color:#85f43a; font-weight:800; font-size:18px" x-text="$store.mapsily.format(simBudget)"></span>
                                 </div>
                                 <input type="range" min="{{ round($calculation->total_cost * 0.5) }}" max="{{ round($calculation->total_cost * 3) }}" step="100" x-model="simBudget" style="width:100%; accent-color:#85f43a; cursor:pointer">
                             </div>
@@ -230,7 +232,7 @@
                             @foreach($calculation->services as $service)
                             <div class="breakdown-item">
                                 <span style="font-weight:500">{{ $service->service_name }}</span>
-                                <span class="svc-cost">${{ number_format($service->estimated_cost) }} <small style="color:#666; font-size:12px">/mo</small></span>
+                                <span class="svc-cost" x-text="$store.mapsily.format({{ $service->estimated_cost }}) + ' /mo'"></span>
                             </div>
                             @endforeach
                         </div>
@@ -271,6 +273,8 @@
                                            required 
                                            style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #222; color: #fff; margin-bottom: 20px;">
                                     
+                                    <input type="hidden" name="currency" :value="$store.mapsily.currency">
+                                    
                                     <div style="display:flex; gap:10px">
                                         <button type="button" @click="showEmailModal = false" class="btn btn-ghost" style="flex:1">Cancel</button>
                                         <button type="submit" class="btn btn-primary" style="flex:1">Download →</button>
@@ -281,6 +285,7 @@
                     @else
                         <form action="{{ route('proposals.store', $calculation->id) }}" method="POST">
                             @csrf
+                            <input type="hidden" name="currency" :value="$store.mapsily.currency">
                             <button type="submit" class="btn btn-primary">Download PDF</button>
                         </form>
                     @endif

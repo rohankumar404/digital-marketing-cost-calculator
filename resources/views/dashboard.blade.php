@@ -123,7 +123,9 @@
                                     </div>
                                 </div>
                                 <div class="calc-action">
-                                    <span class="calc-total">${{ number_format($calc->total_cost) }} <small style="font-size: 10px; opacity: 0.5;">/mo</small></span>
+                                    <span class="calc-total" x-text="$store.mapsily.format({{ $calc->total_cost }})">
+                                        ${{ number_format($calc->total_cost) }}
+                                    </span>
                                     <a href="{{ route('calculations.show', $calc->id) }}" class="calc-view">View Strategy Details →</a>
                                 </div>
                             </div>

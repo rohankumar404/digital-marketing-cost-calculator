@@ -1182,7 +1182,7 @@
                                 <label for="monthly_revenue">Current Monthly Revenue <span
                                         style="color:#555; font-weight:400">(optional)</span></label>
                                 <div class="input-prefix">
-                                    <span>$</span>
+                                    <span x-text="$store.mapsily.symbols[$store.mapsily.currency]"></span>
                                     <input type="number" id="monthly_revenue" x-model="form.monthly_revenue"
                                         placeholder="e.g. 25000" min="0" step="500">
                                 </div>
@@ -1286,7 +1286,7 @@
                                 <div class="form-group">
                                     <label for="gads_budget">Monthly Ad Spend</label>
                                     <div class="input-prefix">
-                                        <span>$</span>
+                                        <span x-text="$store.mapsily.symbols[$store.mapsily.currency]"></span>
                                         <input type="number" id="gads_budget" x-model="inputs.google_ads.budget"
                                             placeholder="e.g. 3000" min="100">
                                     </div>
@@ -1294,7 +1294,7 @@
                                 <div class="form-group">
                                     <label for="gads_cpc">Target Cost-Per-Click</label>
                                     <div class="input-prefix">
-                                        <span>$</span>
+                                        <span x-text="$store.mapsily.symbols[$store.mapsily.currency]"></span>
                                         <input type="number" id="gads_cpc" x-model="inputs.google_ads.cpc"
                                             placeholder="e.g. 2.50" min="0.01" step="0.01">
                                     </div>
@@ -1405,9 +1405,9 @@
                                         placeholder="e.g. 3" min="1">
                                 </div>
                                 <div class="form-group">
-                                    <label for="social_paid">Ad Spend</label>
+                                    <label for="social_paid">Monthly Ad Spend</label>
                                     <div class="input-prefix">
-                                        <span>$</span>
+                                        <span x-text="$store.mapsily.symbols[$store.mapsily.currency]"></span>
                                         <input type="number" id="social_paid" x-model="inputs.social.paid_budget"
                                             placeholder="e.g. 500" min="0">
                                     </div>
@@ -1494,7 +1494,7 @@
                             </div>
                             <div class="review-row" x-show="form.monthly_revenue">
                                 <span>Monthly Revenue</span>
-                                <span x-text="'$' + Number(form.monthly_revenue).toLocaleString()"></span>
+                                <span x-text="$store.mapsily.format(form.monthly_revenue)"></span>
                             </div>
                         </div>
 
@@ -1517,7 +1517,7 @@
                                         <span x-text="item.icon"></span>
                                         <span x-text="item.name"></span>
                                     </span>
-                                    <span class="cost" x-text="'$' + item.cost.toLocaleString() + ' /mo'"></span>
+                                    <span class="cost" x-text="$store.mapsily.format(item.cost) + ' /mo'"></span>
                                 </div>
                             </template>
                         </div>
@@ -1538,7 +1538,7 @@
                                 <div class="roi" x-show="result?.roi" x-text="'📈 Est. ROI: ' + result?.roi"></div>
                             </div>
                             <div style="text-align:right">
-                                <div class="amount" x-text="'$' + result?.total?.toLocaleString()"></div>
+                                <div class="amount" x-text="$store.mapsily.format(result?.total)"></div>
                                 <div style="font-size:12px; color:#666; margin-top:2px">per month</div>
                             </div>
                         </div>

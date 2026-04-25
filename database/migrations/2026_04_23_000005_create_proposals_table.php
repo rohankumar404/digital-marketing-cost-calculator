@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('user_id')
+                  ->nullable()
                   ->constrained('users')
                   ->cascadeOnDelete(); // Delete proposal record when user is deleted
 

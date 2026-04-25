@@ -31,7 +31,7 @@
             <tr><td><strong>Target Location:</strong></td><td>{{ $calculation->target_location }}</td></tr>
             <tr><td><strong>Growth Stage:</strong></td><td>{{ $calculation->growth_stage }}</td></tr>
             @if($calculation->monthly_revenue)
-            <tr><td><strong>Current Revenue:</strong></td><td>${{ number_format($calculation->monthly_revenue) }} /mo</td></tr>
+            <tr><td><strong>Current Revenue:</strong></td><td>{{ $formatCurrency($calculation->monthly_revenue) }} /mo</td></tr>
             @endif
         </table>
     </div>
@@ -56,12 +56,12 @@
                 @foreach($calculation->services as $service)
                 <tr>
                     <td>{{ $service->service_name }}</td>
-                    <td>${{ number_format($service->estimated_cost) }}</td>
+                    <td>{{ $formatCurrency($service->estimated_cost) }}</td>
                 </tr>
                 @endforeach
                 <tr class="total-row">
                     <td><strong>Total Estimated Investment</strong></td>
-                    <td><strong>${{ number_format($calculation->total_cost) }} /mo</strong></td>
+                    <td><strong>{{ $formatCurrency($calculation->total_cost) }} /mo</strong></td>
                 </tr>
             </tbody>
         </table>

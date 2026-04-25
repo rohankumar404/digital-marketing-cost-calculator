@@ -153,8 +153,63 @@
             transition: 0.2s;
         }
 
-        .nav-link:hover {
-            color: #fff;
+        /* Currency Switcher Styles */
+        .currency-switcher {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 5px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .currency-switcher:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .currency-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            background: #222;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            width: 160px;
+            z-index: 10001;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: none;
+        }
+
+        .currency-dropdown.active {
+            display: block;
+        }
+
+        .currency-opt {
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .currency-opt:hover {
+            background: rgba(133, 244, 58, 0.1);
+            color: #85f43a;
+        }
+
+        .currency-opt.active {
+            color: #85f43a;
+            background: rgba(133, 244, 58, 0.05);
         }
 
         /* Standardized Modal Centering Protocol */
@@ -297,6 +352,29 @@
     @stack('styles')
 </head>
 
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('mapsily', {
+            currency: localStorage.getItem('mapsily_currency') || 'USD',
+            symbols: { USD: '$', INR: '₹', EUR: '€', GBP: '£', AED: 'د.إ', SAR: 'ر.س', QAR: 'ر.ق', KWD: 'د.ك' },
+            rates: { USD: 1, INR: 83.2, EUR: 0.92, GBP: 0.79, AED: 3.67, SAR: 3.75, QAR: 3.64, KWD: 0.31 },
+            setCurrency(c) {
+                this.currency = c;
+                localStorage.setItem('mapsily_currency', c);
+            },
+            format(amt) {
+                let val = (amt || 0) * this.rates[this.currency];
+                let symbol = this.symbols[this.currency];
+                let formatted = Number(val).toLocaleString(undefined, {
+                    minimumFractionDigits: (this.currency === 'KWD' ? 3 : 0), 
+                    maximumFractionDigits: (this.currency === 'KWD' ? 3 : 0)
+                });
+                return symbol + formatted;
+            }
+        });
+    });
+</script>
+
 <body x-data="{ openLead: false }">
     <header class="elite-header">
         <div class="nav-container">
@@ -311,7 +389,25 @@
                 </nav>
             </div>
 
-            <nav class="nav-actions" style="display: flex; align-items: center; gap: 25px;">
+            <nav class="nav-actions" style="display: flex; align-items: center; gap: 20px;">
+                {{-- Currency Switcher --}}
+                <div x-data="{ dropdownOpen: false }" class="currency-switcher" @click.stop="dropdownOpen = !dropdownOpen">
+                    <span style="font-size: 16px; color: #85f43a; font-weight: 800;" x-text="$store.mapsily.symbols[$store.mapsily.currency]"></span>
+                    <span style="font-size: 12px; color: #fff; font-weight: 700; text-transform: uppercase;" x-text="$store.mapsily.currency"></span>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition: 0.3s;" :style="dropdownOpen ? 'transform: rotate(180deg)' : ''">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+
+                    <div class="currency-dropdown" :class="dropdownOpen ? 'active' : ''">
+                        <template x-for="(symbol, code) in $store.mapsily.symbols">
+                            <div class="currency-opt" :class="$store.mapsily.currency === code ? 'active' : ''" @click="$store.mapsily.setCurrency(code)">
+                                <span style="font-size: 16px; width: 25px; text-align: center;" x-text="symbol"></span>
+                                <span x-text="code"></span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
                 <a href="https://mapsily.com" target="_blank" class="header-btn">
                     Visit Mapsily.com
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
