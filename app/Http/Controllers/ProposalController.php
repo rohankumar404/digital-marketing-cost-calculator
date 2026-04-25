@@ -32,7 +32,16 @@ class ProposalController extends Controller
 
         // 1. Currency logic
         $targetCurrency = $request->input('currency', 'USD');
-        $currencySymbols = [ 'USD' => '$', 'INR' => '₹', 'EUR' => '€', 'GBP' => '£', 'AED' => 'د.إ', 'SAR' => 'ر.س', 'QAR' => 'ر.ق', 'KWD' => 'د.ك' ];
+        $currencySymbols = [ 
+            'USD' => '$', 
+            'INR' => 'INR ',
+            'EUR' => 'EUR ',
+            'GBP' => 'GBP ',
+            'AED' => 'AED ',
+            'SAR' => 'SAR ',
+            'QAR' => 'QAR ',
+            'KWD' => 'KWD '
+        ];
         $currencyRates = [ 'USD' => 1, 'INR' => 83.2, 'EUR' => 0.92, 'GBP' => 0.79, 'AED' => 3.67, 'SAR' => 3.75, 'QAR' => 3.64, 'KWD' => 0.31 ];
         
         $currencySymbol = $currencySymbols[$targetCurrency] ?? '$';

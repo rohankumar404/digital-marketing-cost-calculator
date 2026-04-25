@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>Marketing Proposal - {{ $calculation->business_type }}</title>
     <style>
-        body { font-family: 'Helvetica', sans-serif; color: #333; line-height: 1.5; }
-        .header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #85f43a; padding-bottom: 20px; }
+        body { font-family: 'Helvetica', sans-serif; color: #333; line-height: 1.5; font-size: 13px; }
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #85f43a; padding-bottom: 10px; }
         .header h1 { color: #272727; margin: 0; }
         .section { margin-bottom: 30px; }
         .section-title { font-size: 18px; font-weight: bold; color: #47A805; margin-bottom: 10px; border-left: 4px solid #85f43a; padding-left: 10px; }
