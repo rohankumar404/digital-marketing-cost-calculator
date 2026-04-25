@@ -7,8 +7,8 @@
 @push('styles')
     <style>
         /* ═══════════════════════════════════════════════════
-                                               GLOBAL THEME & RESET
-                                            ═══════════════════════════════════════════════════ */
+                                                                           GLOBAL THEME & RESET
+                                                                        ═══════════════════════════════════════════════════ */
         *,
         *::before,
         *::after {
@@ -142,27 +142,48 @@
             color: #fff;
         }
 
-        /* ── Container Grid ── */
-        .calc-main-col {
-            display: flex !important;
-            flex-wrap: wrap;
-            gap: 30px !important;
-            min-width: 0;
-            /* Critical for grid stability */
-        }
-
+        /* ── Main Layout (Flex) ── */
         .calc-container {
             max-width: 1300px;
             margin: 0 auto;
-            /* display: grid !important; */
-            grid-template-columns: 66% 30% !important;
-            gap: 4% !important;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
             padding: 0 30px;
             width: 100%;
         }
 
+        .calc-main-col {
+            width: 100%;
+            display: flex;
+            gap: 30px;
+            min-width: 0;
+        }
+
+        .calc-sidebar {
+            flex: 0 0 30%;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        @media (max-width: 1100px) {
+            .calc-container {
+                flex-direction: column;
+            }
+
+            .calc-main-col,
+            .calc-sidebar {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+        }
+
         /* ── Card Styles ── */
         .calc-card {
+            flex: 0 0 70%;
+            width: 70%;
             background: #222;
             border-radius: 16px;
             border: 1px solid #2a2a2a;
@@ -335,8 +356,8 @@
 
 
         /* ═══════════════════════════════════════════════════
-                                               PROGRESS BAR
-                                            ═══════════════════════════════════════════════════ */
+                                                                           PROGRESS BAR
+                                                                        ═══════════════════════════════════════════════════ */
         .progress-header {
             padding: 28px 32px 0;
         }
@@ -457,8 +478,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                               STEP BODY
-                                            ═══════════════════════════════════════════════════ */
+                                                                           STEP BODY
+                                                                        ═══════════════════════════════════════════════════ */
         .step-body {
             padding: 32px 32px 0;
         }
@@ -584,8 +605,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                               STEP 2 – SERVICE CARDS
-                                            ═══════════════════════════════════════════════════ */
+                                                                           STEP 2 – SERVICE CARDS
+                                                                        ═══════════════════════════════════════════════════ */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -674,8 +695,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                               STEP 3 – SERVICE INPUTS
-                                            ═══════════════════════════════════════════════════ */
+                                                                           STEP 3 – SERVICE INPUTS
+                                                                        ═══════════════════════════════════════════════════ */
         .service-block {
             border: 1.5px solid #2e2e2e;
             border-radius: 14px;
@@ -760,8 +781,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                               STEP 4 – REVIEW
-                                            ═══════════════════════════════════════════════════ */
+                                                                           STEP 4 – REVIEW
+                                                                        ═══════════════════════════════════════════════════ */
         .review-section {
             margin-bottom: 24px;
         }
@@ -891,8 +912,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                               NAVIGATION FOOTER
-                                            ═══════════════════════════════════════════════════ */
+                                                                           NAVIGATION FOOTER
+                                                                        ═══════════════════════════════════════════════════ */
         .calc-footer {
             display: flex;
             justify-content: space-between;
@@ -1016,8 +1037,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                               RESPONSIVE
-                                            ═══════════════════════════════════════════════════ */
+                                                                           RESPONSIVE
+                                                                        ═══════════════════════════════════════════════════ */
 
         @media (max-width: 480px) {
             .services-grid {
