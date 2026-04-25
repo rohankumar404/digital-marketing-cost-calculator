@@ -10,17 +10,17 @@
         color: #ffffff;
         padding: 50px 20px;
     }
-    .container {
-        max-width: 1140px;
+    .dash-container {
+        max-width: 1300px;
         margin: 0 auto;
     }
-    .grid-row {
+    .dash-grid-row {
         display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 30px;
+        grid-template-columns: 2.5fr 1fr;
+        gap: 40px;
     }
-    @media (max-width: 992px) {
-        .grid-row { grid-template-columns: 1fr; }
+    @media (max-width: 1024px) {
+        .dash-grid-row { grid-template-columns: 1fr; }
     }
 
     /* Professional Card Styles */
@@ -98,16 +98,16 @@
     .btn-new:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(133,244,58,0.2); }
 </style>
 
-<div class="dashboard-page">
-    <div class="container">
+<div class="dashboard-page" style="padding: 60px 0;">
+    <div class="dash-container">
         
-        <div class="grid-row">
+        <div class="dash-grid-row">
             {{-- Main Calculations Column --}}
             <div class="main-content">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Recent Estimations</h2>
-                        <a href="{{ route('calculator') }}" class="btn-new">New Strategy Report</a>
+                <div class="card" style="background: #1e1e1e; border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 40px;">
+                    <div class="card-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 30px; padding-bottom: 20px;">
+                        <h2 class="card-title" style="font-size: 24px; font-weight: 800;">Recent Estimations</h2>
+                        <a href="{{ route('calculator') }}" class="header-btn" style="padding: 10px 25px;">New Strategy Audit +</a>
                     </div>
 
                     <div class="calc-list">
@@ -139,9 +139,9 @@
 
             {{-- Sidebar Column --}}
             <div class="sidebar">
-                <div class="card" style="margin-bottom: 25px;">
-                    <div class="card-header">
-                        <h2 class="card-title">Account Summary</h2>
+                <div class="card" style="background: #1e1e1e; border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 30px;">
+                    <div class="card-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 20px; padding-bottom: 15px;">
+                        <h2 class="card-title" style="font-size: 18px; font-weight: 800;">Account Status</h2>
                     </div>
                     
                     <div class="status-item">
@@ -174,13 +174,13 @@
                         </p>
                     </div>
 
-                    <button class="btn-new" style="width: 100%; margin-top: 20px; background: transparent; border: 1px solid #85f43a; color: #85f43a;">Upgrade to Pro ✧</button>
+                    <button class="header-btn" style="width: 100%; margin-top: 25px; background: transparent; border: 1px solid var(--primary); color: var(--primary); justify-content: center;">Upgrade to Pro ✧</button>
                 </div>
 
-                <div class="card">
-                    <h3 style="font-size: 14px; margin-bottom: 15px; color: #aaa;">Need help?</h3>
-                    <p style="font-size: 13px; color: #888; margin-bottom: 15px;">Book a free strategy call with our agency experts at Mapsily.</p>
-                    <a href="https://mapsily.com/contact" target="_blank" style="color: #85f43a; font-size: 13px; font-weight: 600; text-decoration: none;">Contact Support →</a>
+                <div class="card" style="margin-top: 25px; background: rgba(133,244,58,0.03); border: 1px solid rgba(133,244,58,0.1); border-radius: 24px; padding: 25px;">
+                    <h3 style="font-size: 14px; margin-bottom: 10px; color: #fff; font-weight: 800; text-transform: uppercase;">Need Assistance?</h3>
+                    <p style="font-size: 13px; color: #888; margin-bottom: 20px;">Book a free strategy synchronization call with our agency experts.</p>
+                    <button @click="openLead = true" style="background: none; border: none; color: var(--primary); font-size: 13px; font-weight: 700; cursor: pointer; padding: 0;">Connect With Strategy Team →</button>
                 </div>
             </div>
         </div>

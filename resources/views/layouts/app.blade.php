@@ -33,77 +33,201 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg);
+            background-color: var(--bg);
+            /* Globally apply the Dots architecture */
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 35px 35px;
             color: var(--text);
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            overflow-x: hidden;
+            /* Prevent global horizontal scroll */
+            width: 100%;
         }
 
-        /* Nav */
-        header {
-            background: rgba(26, 26, 26, 0.9);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-            padding: 15px 5%;
+        /* Elite Header System */
+        .elite-header {
+            height: 90px;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: sticky;
             top: 0;
             z-index: 10000;
-            /* Ensure it stays above everything */
-            transition: var(--transition);
+            backdrop-filter: blur(15px);
         }
 
         .nav-container {
-            max-width: 1300px;
+            width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
         .logo img {
-            height: 32px;
+            height: 35px;
             width: auto;
             object-fit: contain;
+            transition: 0.3s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-left-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .nav-left-link:hover {
+            opacity: 1;
         }
 
         .nav-actions {
             display: flex;
-            gap: 12px;
             align-items: center;
+            gap: 25px;
         }
 
-        .btn {
-            padding: 10px 22px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
+        .nav-action-link {
+            color: #fff;
             text-decoration: none;
-            transition: var(--transition);
-            border: none;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .nav-action-link:hover {
+            opacity: 1;
+        }
+
+        .header-btn {
+            background: var(--primary);
+            color: #000;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: none;
+            font-size: 13px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn-outline {
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(133, 244, 58, 0.2);
+            filter: brightness(1.05);
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-link:hover {
             color: #fff;
-            border: 1px solid var(--border);
         }
 
-        .btn-outline:hover {
+        /* Standardized Modal Centering Protocol */
+        .elite-modal-overlay {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: rgba(0, 0, 0, 0.94);
+            z-index: 1000000;
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        /* Essential for Alpine x-show to work with grid */
+        [x-cloak] { display: none !important; }
+
+        .elite-modal-card {
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 45px;
+            width: 100%;
+            max-width: 550px;
+            position: relative;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Lead Form Integrity Classes */
+        .elite-form-group {
+            margin-bottom: 22px;
+        }
+
+        .elite-label {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .elite-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 12px;
             background: rgba(255, 255, 255, 0.05);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: #000;
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: #fff;
+            font-size: 14px;
+            transition: 0.3s;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .elite-input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(133, 244, 58, 0.1);
+        }
+
+        .elite-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        @media (max-width: 600px) {
+            .elite-grid { grid-template-columns: 1fr; }
+            .elite-modal-card { padding: 30px; }
         }
 
         /* Footer */
@@ -173,44 +297,41 @@
     @stack('styles')
 </head>
 
-<body>
-    <header
-        style="height: 100px; display: flex; align-items: center; background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);">
-        <div class="nav-container"
-            style="width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 50px; display: flex; justify-content: space-between; align-items: center;">
-            <div class="logo-group" style="display: flex; align-items: center; gap: 50px;">
+<body x-data="{ openLead: false }">
+    <header class="elite-header">
+        <div class="nav-container">
+            <div class="logo-group">
                 <div class="logo">
                     <a href="/">
-                        <img src="/assets/img/Mapsily-wihte-logo.png" alt="Mapsily Logo" style="height: 42px;">
+                        <img src="/assets/img/Mapsily-wihte-logo.png" alt="Mapsily Logo">
                     </a>
                 </div>
                 <nav class="nav-left">
-                    <a href="{{ route('dashboard') }}"
-                        style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; transition: 0.3s;"
-                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Dashboard</a>
+                    <a href="{{ route('dashboard') }}" class="nav-left-link">Dashboard</a>
                 </nav>
             </div>
 
-            <nav class="nav-actions" style="display: flex; align-items: center; gap: 30px;">
-                <a href="https://mapsily.com" target="_blank" class="btn btn-primary"
-                    style="background: #85f43a; color: #000; border-radius: 10px; padding: 12px 28px; font-size: 14px; font-weight: 900; box-shadow: 0 4px 20px rgba(133,244,58,0.2);">Visit
-                    Mapsily.com <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="3" style="margin-left: 8px;">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
-                    </svg></a>
+            <nav class="nav-actions" style="display: flex; align-items: center; gap: 25px;">
+                <a href="https://mapsily.com" target="_blank" class="header-btn">
+                    Visit Mapsily.com
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                </a>
                 @auth
-                    <div style="display: flex; align-items: center; gap: 25px;">
-                        <span style="color: #fff; font-size: 15px; font-weight: 600;">Hi,
-                            {{ explode(' ', auth()->user()->name)[0] }}</span>
-                        <a href="{{ route('profile.edit') }}"
-                            style="color: #fff; opacity: 0.6; font-size: 13px; font-weight: 800; text-transform: uppercase; text-decoration: none;">Settings</a>
+                    <div style="display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.05); padding: 5px 15px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">
+                        <span style="color: #85f43a; font-size: 13px; font-weight: 800; text-transform: uppercase;">Hi, {{ explode(' ', auth()->user()->name)[0] }}</span>
+                        <div style="width: 1px; height: 12px; background: rgba(255,255,255,0.2);"></div>
+                        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="nav-link" style="background: none; border: none; cursor: pointer; color: #ff4444; font-weight: 700; font-size: 13px;">Logout</button>
+                        </form>
                     </div>
                 @else
-                    <a href="{{ route('login') }}"
-                        style="color: #fff; opacity: 0.6; text-decoration: none; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Log
-                        in</a>
-                    <a href="{{ route('register') }}"
-                        style="color: #fff; opacity: 0.6; text-decoration: none; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Register</a>
+                    <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                    <a href="{{ route('register') }}" class="nav-link">Register</a>
                 @endauth
             </nav>
         </div>
@@ -243,131 +364,33 @@
             </p>
 
             <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <button class="btn btn-primary" style="padding: 18px 40px; font-size: 16px;" @click="openLead = true">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <button class="header-btn" style="padding: 22px 50px; font-size: 16px; min-width: 250px; justify-content: center;" @click="openLead = true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 12px;">
                         <path
                             d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
-                    Book Free Strategy Call
+                    Book Free Analysis
                 </button>
-                <a href="#" class="btn btn-outline"
-                    style="padding: 18px 40px; font-size: 16px; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <a href="#" class="header-btn"
+                    style="padding: 22px 50px; font-size: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.15); color: #fff; min-width: 250px; justify-content: center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 12px;">
                         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                     </svg>
-                    Upgrade to Premium
+                    Upgrade Account
                 </a>
             </div>
         </div>
     </section>
 
-    {{-- Lead Modal --}}
-    <div x-show="openLead" class="modal-overlay"
-        style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px);"
-        x-cloak x-transition>
 
-        <div class="card"
-            style="width: 100%; max-width: 500px; text-align: left; position: relative; max-height: 90vh; overflow-y: auto;"
-            @click.away="openLead = false">
 
-            <button @click="openLead = false"
-                style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: #888; font-size: 24px; cursor: pointer;">&times;</button>
-
-            <h3 style="font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 10px;">Grow With Mapsily</h3>
-            <p style="color: #666; font-size: 14px; margin-bottom: 30px;">Fill out the form below and our strategy
-                expert will reach out within 24 hours.</p>
-
-            <form x-data="{ 
-                        loading: false, 
-                        success: false,
-                        formData: { name: '', email: '', phone: '', company: '', message: '' },
-                        submitLead() {
-                            this.loading = true;
-                            fetch('{{ route('leads.store') }}', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                                body: JSON.stringify(this.formData)
-                            })
-                            .then(res => res.json())
-                            .then(data => {
-                                this.loading = false;
-                                if(data.success) {
-                                    this.success = true;
-                                    this.formData = { name: '', email: '', phone: '', company: '', message: '' };
-                                }
-                            });
-                        }
-                    }" @submit.prevent="submitLead()">
-
-                <div x-show="!success">
-                    <div style="margin-bottom: 15px;">
-                        <label
-                            style="display: block; font-size: 12px; font-weight: 700; color: #888; margin-bottom: 5px; text-transform: uppercase;">Full
-                            Name *</label>
-                        <input type="text" x-model="formData.name" required
-                            style="width: 100%; padding: 12px; border-radius: 10px; background: #333; border: 1px solid #444; color: #fff; outline: none; transition: 0.2s;">
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                        <div>
-                            <label
-                                style="display: block; font-size: 12px; font-weight: 700; color: #888; margin-bottom: 5px; text-transform: uppercase;">Work
-                                Email *</label>
-                            <input type="email" x-model="formData.email" required
-                                style="width: 100%; padding: 12px; border-radius: 10px; background: #333; border: 1px solid #444; color: #fff;">
-                        </div>
-                        <div>
-                            <label
-                                style="display: block; font-size: 12px; font-weight: 700; color: #888; margin-bottom: 5px; text-transform: uppercase;">Phone
-                                Number *</label>
-                            <input type="text" x-model="formData.phone" required
-                                style="width: 100%; padding: 12px; border-radius: 10px; background: #333; border: 1px solid #444; color: #fff;">
-                        </div>
-                    </div>
-
-                    <div style="margin-bottom: 15px;">
-                        <label
-                            style="display: block; font-size: 12px; font-weight: 700; color: #888; margin-bottom: 5px; text-transform: uppercase;">Company
-                            Name</label>
-                        <input type="text" x-model="formData.company"
-                            style="width: 100%; padding: 12px; border-radius: 10px; background: #333; border: 1px solid #444; color: #fff;">
-                    </div>
-
-                    <div style="margin-bottom: 25px;">
-                        <label
-                            style="display: block; font-size: 12px; font-weight: 700; color: #888; margin-bottom: 5px; text-transform: uppercase;">Your
-                            Message</label>
-                        <textarea x-model="formData.message" rows="3"
-                            style="width: 100%; padding: 12px; border-radius: 10px; background: #333; border: 1px solid #444; color: #fff; resize: none;"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px;"
-                        x-bind:disabled="loading" x-text="loading ? 'Sending...' : 'Request Strategy Audit →'"></button>
-                </div>
-
-                <div x-show="success" x-transition class="text-center" style="padding: 20px 0;">
-                    <div
-                        style="width: 60px; height: 60px; background: rgba(133,244,58,0.1); color: #85f43a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 30px;">
-                        ✓</div>
-                    <h4 style="font-size: 20px; color: #fff; margin-bottom: 10px;">Enquiry Received!</h4>
-                    <p style="color: #888; font-size: 14px; margin-bottom: 25px;">Thank you for your interest. Our
-                        growth expert will review your business and reach out shortly.</p>
-                    <button @click="openLead = false; success = false" class="btn btn-outline"
-                        style="width: 100%;">Close Window</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-
-    {{-- Background effect --}}
+    {{-- Atmosphere Glows (Contained) --}}
     <div
-        style="position: absolute; top: -50%; left: -20%; width: 600px; height: 600px; background: rgba(133,244,58,0.03); border-radius: 50%; filter: blur(100px); pointer-events: none;">
+        style="position: absolute; top: -10%; left: -10%; width: 400px; height: 400px; background: rgba(133,244,58,0.02); border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0;">
     </div>
     <div
-        style="position: absolute; bottom: -50%; right: -20%; width: 600px; height: 600px; background: rgba(133,244,58,0.03); border-radius: 50%; filter: blur(100px); pointer-events: none;">
+        style="position: absolute; bottom: 0; right: -10%; width: 500px; height: 500px; background: rgba(133,244,58,0.02); border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 0;">
     </div>
-    </section>
 
     <footer>
         <div class="footer-grid">
@@ -400,6 +423,93 @@
             &copy; {{ date('Y') }} Mapsily. All rights reserved. | Built for modern businesses.
         </div>
     </footer>
+
+    {{-- High-Fidelity Lead Modal --}}
+    <div x-show="openLead" class="elite-modal-overlay" x-cloak x-transition>
+
+        <div class="elite-modal-card" @click.stop>
+
+            <button @click="openLead = false"
+                style="position: absolute; top: 25px; right: 25px; background: none; border: none; color: #666; font-size: 32px; cursor: pointer; transition: 0.3s; z-index: 20;">&times;</button>
+
+            <div style="margin-bottom: 30px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; color: #85f43a; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px;">
+                    <span style="width: 8px; height: 1px; background: #85f43a;"></span>
+                    Elite Strategy Access
+                </div>
+                <h3 style="font-size: 32px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 10px;">Grow With Mapsily</h3>
+                <p style="color: #666; font-size: 14px; line-height: 1.6;">Our strategy expert will evaluate your audit and reach out within 24 hours.</p>
+            </div>
+
+            <form x-data="{ 
+                        loading: false, 
+                        success: false,
+                        formData: { name: '', email: '', phone: '', company: '', message: '' },
+                        submitLead() {
+                            this.loading = true;
+                            fetch('{{ route('leads.store') }}', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                                body: JSON.stringify(this.formData)
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                this.loading = false;
+                                if(data.success) {
+                                    this.success = true;
+                                    this.formData = { name: '', email: '', phone: '', company: '', message: '' };
+                                }
+                            });
+                        }
+                    }" @submit.prevent="submitLead()">
+
+                <div x-show="!success">
+                    <div class="elite-form-group">
+                        <label class="elite-label">Full Name *</label>
+                        <input type="text" x-model="formData.name" required placeholder="Enter name" class="elite-input">
+                    </div>
+
+                    <div class="elite-grid">
+                        <div>
+                            <label class="elite-label">Email Address *</label>
+                            <input type="email" x-model="formData.email" required placeholder="work@company.com" class="elite-input">
+                        </div>
+                        <div>
+                            <label class="elite-label">Phone Number *</label>
+                            <input type="text" x-model="formData.phone" required placeholder="+1 (555) 000-0000" class="elite-input">
+                        </div>
+                    </div>
+
+                    <div class="elite-form-group">
+                        <label class="elite-label">Company Name (Optional)</label>
+                        <input type="text" x-model="formData.company" placeholder="Business name" class="elite-input">
+                    </div>
+
+                    <div class="elite-form-group" style="margin-bottom: 30px;">
+                        <label class="elite-label">Additional Context</label>
+                        <textarea x-model="formData.message" rows="3" placeholder="Tell us about your project goals..." class="elite-input" style="resize: none;"></textarea>
+                    </div>
+
+                    <button type="submit" class="header-btn" style="width: 100%; justify-content: center; padding: 18px;" x-bind:disabled="loading">
+                        <span x-show="!loading">Initialize Strategy Request →</span>
+                        <span x-show="loading">Securing Connection...</span>
+                    </button>
+                </div>
+
+                <div x-show="success" x-transition class="text-center" style="padding: 40px 0;">
+                    <div
+                        style="width: 80px; height: 80px; background: rgba(133,244,58,0.1); color: #85f43a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; font-size: 40px;">
+                        ✓</div>
+                    <h4 style="font-size: 24px; color: #fff; margin-bottom: 10px;">Enquiry Received!</h4>
+                    <p style="color: #888; font-size: 16px; margin-bottom: 40px;">Our growth expert will reach out
+                        within 24 hours.</p>
+                    <button @click="openLead = false; success = false" class="header-btn"
+                        style="width: 100%; justify-content: center; background: #333; color: #fff;">Close
+                        Window</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     @stack('scripts')
 </body>

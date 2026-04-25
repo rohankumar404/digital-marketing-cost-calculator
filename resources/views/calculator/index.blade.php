@@ -7,8 +7,8 @@
 @push('styles')
     <style>
         /* ═══════════════════════════════════════════════════
-                                                                           GLOBAL THEME & RESET
-                                                                        ═══════════════════════════════════════════════════ */
+                                                                                           GLOBAL THEME & RESET
+                                                                                        ═══════════════════════════════════════════════════ */
         *,
         *::before,
         *::after {
@@ -356,8 +356,8 @@
 
 
         /* ═══════════════════════════════════════════════════
-                                                                           PROGRESS BAR
-                                                                        ═══════════════════════════════════════════════════ */
+                                                                                           PROGRESS BAR
+                                                                                        ═══════════════════════════════════════════════════ */
         .progress-header {
             padding: 28px 32px 0;
         }
@@ -478,8 +478,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                                                           STEP BODY
-                                                                        ═══════════════════════════════════════════════════ */
+                                                                                           STEP BODY
+                                                                                        ═══════════════════════════════════════════════════ */
         .step-body {
             padding: 32px 32px 0;
         }
@@ -605,8 +605,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                                                           STEP 2 – SERVICE CARDS
-                                                                        ═══════════════════════════════════════════════════ */
+                                                                                           STEP 2 – SERVICE CARDS
+                                                                                        ═══════════════════════════════════════════════════ */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -695,8 +695,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                                                           STEP 3 – SERVICE INPUTS
-                                                                        ═══════════════════════════════════════════════════ */
+                                                                                           STEP 3 – SERVICE INPUTS
+                                                                                        ═══════════════════════════════════════════════════ */
         .service-block {
             border: 1.5px solid #2e2e2e;
             border-radius: 14px;
@@ -781,8 +781,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                                                           STEP 4 – REVIEW
-                                                                        ═══════════════════════════════════════════════════ */
+                                                                                           STEP 4 – REVIEW
+                                                                                        ═══════════════════════════════════════════════════ */
         .review-section {
             margin-bottom: 24px;
         }
@@ -912,8 +912,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                                                           NAVIGATION FOOTER
-                                                                        ═══════════════════════════════════════════════════ */
+                                                                                           NAVIGATION FOOTER
+                                                                                        ═══════════════════════════════════════════════════ */
         .calc-footer {
             display: flex;
             justify-content: space-between;
@@ -1037,8 +1037,8 @@
         }
 
         /* ═══════════════════════════════════════════════════
-                                                                           RESPONSIVE
-                                                                        ═══════════════════════════════════════════════════ */
+                                                                                           RESPONSIVE
+                                                                                        ═══════════════════════════════════════════════════ */
 
         @media (max-width: 480px) {
             .services-grid {
@@ -1602,7 +1602,9 @@
                                 </svg>
                             </div>
                             <div class="benefit-text">
-                                <h4 style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;">Quick
+                                <h4
+                                    style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; margin-top: 0;">
+                                    Quick
                                     Insights</h4>
                                 <p style="font-size: 11px; color: #777; line-height: 1.5;">Instantly understand how well
                                     your content resonates with your audience.</p>
@@ -1618,7 +1620,9 @@
                                 </svg>
                             </div>
                             <div class="benefit-text">
-                                <h4 style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;">Track Growth
+                                <h4
+                                    style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; margin-top: 0;">
+                                    Track Growth
                                 </h4>
                                 <p style="font-size: 11px; color: #777; line-height: 1.5;">Measure your performance over
                                     time by saving your historical data.</p>
@@ -1635,7 +1639,9 @@
                                 </svg>
                             </div>
                             <div class="benefit-text">
-                                <h4 style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;">Benchmark
+                                <h4
+                                    style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; margin-top: 0;">
+                                    Benchmark
                                 </h4>
                                 <p style="font-size: 11px; color: #777; line-height: 1.5;">Compare your rates against
                                     industry standards and competitors.</p>
