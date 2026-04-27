@@ -20,7 +20,8 @@ class GeneralSettingSeeder extends Seeder
             'lead_notification_email' => 'leads@mapsily.com',
             'footer_copyright' => 'Mapsily. All rights reserved.',
             'primary_color' => '#85f43a',
-            'secondary_color' => '#272727',
+            'background_color' => '#1a1a1a',
+            'default_currency' => 'USD',
         ];
 
         foreach ($settings as $key => $value) {

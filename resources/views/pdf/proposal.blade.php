@@ -5,14 +5,14 @@
     <title>Marketing Proposal - {{ $calculation->business_type }}</title>
     <style>
         body { font-family: 'Helvetica', sans-serif; color: #333; line-height: 1.5; font-size: 13px; }
-        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #85f43a; padding-bottom: 10px; }
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid {{ $primaryColor }}; padding-bottom: 10px; }
         .header h1 { color: #272727; margin: 0; }
         .section { margin-bottom: 30px; }
-        .section-title { font-size: 18px; font-weight: bold; color: #47A805; margin-bottom: 10px; border-left: 4px solid #85f43a; padding-left: 10px; }
+        .section-title { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px; border-left: 4px solid {{ $primaryColor }}; padding-left: 10px; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th { background-color: #f8f8f8; text-align: left; padding: 10px; border: 1px solid #ddd; }
         td { padding: 10px; border: 1px solid #ddd; }
-        .total-row { font-weight: bold; background-color: #e9fbe0; }
+        .total-row { font-weight: bold; background-color: {{ $primaryColor }}15; }
         .footer { margin-top: 50px; font-size: 12px; text-align: center; color: #777; }
         .strategy-box { background-color: #f0fdf4; border: 1px solid #dcfce7; padding: 15px; border-radius: 5px; }
     </style>

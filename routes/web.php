@@ -30,6 +30,8 @@ Route::prefix('admin')->middleware(['auth', App\Http\Middleware\IsAdmin::class])
 
     Route::get('/settings', [App\Http\Controllers\Admin\GeneralSettingController::class, 'index'])->name('admin.settings.index');
     Route::patch('/settings', [App\Http\Controllers\Admin\GeneralSettingController::class, 'update'])->name('admin.settings.update');
+    Route::post('/settings/currency', [App\Http\Controllers\Admin\GeneralSettingController::class, 'addCurrency'])->name('admin.settings.currency.add');
+    Route::delete('/settings/currency/{id}', [App\Http\Controllers\Admin\GeneralSettingController::class, 'deleteCurrency'])->name('admin.settings.currency.delete');
 });
 
 // Profile Routes

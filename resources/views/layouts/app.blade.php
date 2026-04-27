@@ -20,10 +20,10 @@
 
     <style>
         :root {
-            --bg: #1A1A1A;
+            --bg: {{ get_setting('background_color', '#1A1A1A') }};
             --bg-card: #242424;
             --bg-input: #2D2D2D;
-            --primary: #85f43a;
+            --primary: {{ get_setting('primary_color', '#85f43a') }};
             --secondary: #47A805;
             --text: #ffffff;
             --text-muted: #888888;
@@ -355,9 +355,17 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.store('mapsily', {
-            currency: localStorage.getItem('mapsily_currency') || 'USD',
-            symbols: { USD: '$', INR: '₹', EUR: '€', GBP: '£', AED: 'د.إ', SAR: 'ر.س', QAR: 'ر.ق', KWD: 'د.ك' },
-            rates: { USD: 1, INR: 83.2, EUR: 0.92, GBP: 0.79, AED: 3.67, SAR: 3.75, QAR: 3.64, KWD: 0.31 },
+            currency: localStorage.getItem('mapsily_currency') || '{{ get_setting('default_currency', 'USD') }}',
+            symbols: {
+                @foreach(get_currencies() as $c)
+                    '{{ $c->code }}': '{{ $c->symbol }}',
+                @endforeach
+            },
+            rates: {
+                @foreach(get_currencies() as $c)
+                    '{{ $c->code }}': {{ $c->rate }},
+                @endforeach
+            },
             setCurrency(c) {
                 this.currency = c;
                 localStorage.setItem('mapsily_currency', c);

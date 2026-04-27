@@ -6,7 +6,7 @@
 <style>
     .results-page {
         min-height: 100vh;
-        background-color: #272727;
+        background-color: var(--bg);
         color: #ffffff;
         padding: 40px 20px;
         font-family: 'Inter', sans-serif;
@@ -42,16 +42,16 @@
 
     /* Cards */
     .card {
-        background: #333;
+        background: rgba(255,255,255,0.05);
         border-radius: 20px;
         padding: 30px;
-        border: 1px solid #444;
+        border: 1px solid rgba(255,255,255,0.1);
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         margin-bottom: 20px;
     }
     .highlight-card {
-        background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
-        border-left: 5px solid #85f43a;
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, #2a2a2a 100%);
+        border-left: 5px solid var(--primary);
         text-align: center;
     }
 
@@ -59,14 +59,14 @@
         font-size: 14px;
         text-transform: uppercase;
         letter-spacing: 1px;
-        color: #85f43a;
+        color: var(--primary);
         margin-bottom: 10px;
         font-weight: 600;
     }
     .big-number {
         font-size: 56px;
         font-weight: 800;
-        color: #85f43a;
+        color: var(--primary);
         margin: 10px 0;
     }
     .sub-value {
@@ -99,10 +99,10 @@
         align-items: center;
         justify-content: space-between;
         padding: 15px 0;
-        border-bottom: 1px solid #444;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .breakdown-item:last-child { border-bottom: none; }
-    .svc-cost { font-weight: 700; color: #85f43a; font-size: 18px; }
+    .svc-cost { font-weight: 700; color: var(--primary); font-size: 18px; }
 
     /* Feature Gating */
     .gated-content {
@@ -120,7 +120,7 @@
     }
     .gate-card {
         background: #222;
-        border: 2px solid #85f43a;
+        border: 2px solid var(--primary);
         max-width: 450px;
         padding: 40px;
         box-shadow: 0 20px 50px rgba(0,0,0,0.6);
@@ -141,8 +141,8 @@
         padding: 12px 25px; border-radius: 12px; font-weight: 600;
         cursor: pointer; text-decoration: none; transition: 0.3s; border: none;
     }
-    .btn-primary { background: #85f43a; color: #272727; }
-    .btn-ghost { background: transparent; color: #fff; border: 1px solid #444; }
+    .btn-primary { background: var(--primary); color: var(--bg); }
+    .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
 </style>
 
 <div class="results-page">
@@ -173,7 +173,7 @@
                     <div class="metric-row">
                         <div class="metric-box">
                             <span class="label" style="color:#aaa">ROI Expectation</span>
-                            <span class="metric-val" style="color:#85f43a">{{ $calculation->roi_range ?: 'N/A' }}</span>
+                            <span class="metric-val" style="color:var(--primary)">{{ $calculation->roi_range ?: 'N/A' }}</span>
                         </div>
                         <div class="metric-box">
                             <span class="label" style="color:#aaa">Budget Rec.</span>
@@ -193,7 +193,7 @@
                                 <h2 style="margin-bottom:15px">Unlock Advanced Features</h2>
                                 <p style="color:#aaa; margin-bottom:25px; line-height:1.5">Sign in to view the service-wise breakdown, interactive budget simulator, and detailed marketing channel strategy.</p>
                                 <a href="/register" class="btn btn-primary" style="display:inline-block">Join Free to Unlock →</a>
-                                <p style="margin-top:15px; font-size:12px"><a href="/login" style="color:#85f43a; text-decoration:none">Already have an account? Log in</a></p>
+                                <p style="margin-top:15px; font-size:12px"><a href="/login" style="color:var(--primary); text-decoration:none">Already have an account? Log in</a></p>
                             @else
                                 <h2 style="margin-bottom:15px">Usage Limit Reached</h2>
                                 <p style="color:#aaa; margin-bottom:25px; line-height:1.5">You've reached your limit of 3 free calculations. Upgrade to PRO for unlimited reports and deep-dive strategy audits.</p>
@@ -210,14 +210,14 @@
                             <div class="form-group" style="margin-bottom:25px">
                                 <div style="display:flex; justify-content:space-between; margin-bottom:10px">
                                     <span style="font-weight:600">Simulated Monthly Budget</span>
-                                    <span style="color:#85f43a; font-weight:800; font-size:18px" x-text="$store.mapsily.format(simBudget)"></span>
+                                    <span style="color:var(--primary); font-weight:800; font-size:18px" x-text="$store.mapsily.format(simBudget)"></span>
                                 </div>
-                                <input type="range" min="{{ round($calculation->total_cost * 0.5) }}" max="{{ round($calculation->total_cost * 3) }}" step="100" x-model="simBudget" style="width:100%; accent-color:#85f43a; cursor:pointer">
+                                <input type="range" min="{{ round($calculation->total_cost * 0.5) }}" max="{{ round($calculation->total_cost * 3) }}" step="100" x-model="simBudget" style="width:100%; accent-color:var(--primary); cursor:pointer">
                             </div>
                             <div class="metric-row">
                                 <div class="metric-box" style="background:#2a2a2a">
                                     <span class="label" style="font-size:10px">Est. Monthly Leads</span>
-                                    <span class="metric-val" style="color:#85f43a; font-size:32px" x-text="Math.round(simBudget / cpl)"></span>
+                                    <span class="metric-val" style="color:var(--primary); font-size:32px" x-text="Math.round(simBudget / cpl)"></span>
                                 </div>
                                 <div class="metric-box" style="background:#2a2a2a">
                                     <span class="label" style="font-size:10px">Est. Web Traffic</span>
@@ -271,7 +271,7 @@
                                            name="email" 
                                            placeholder="Your business email" 
                                            required 
-                                           style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #222; color: #fff; margin-bottom: 20px;">
+                                           style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: #222; color: #fff; margin-bottom: 20px;">
                                     
                                     <input type="hidden" name="currency" :value="$store.mapsily.currency">
                                     
@@ -306,7 +306,7 @@
             labels: chartData.map(d => d.name),
             datasets: [{
                 data: chartData.map(d => d.cost),
-                backgroundColor: ['#85f43a','#47A805','#555555','#777777','#999999','#bbbbbb','#dddddd'],
+                backgroundColor: [getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#85f43a','#47A805','#555555','#777777','#999999','#bbbbbb','#dddddd'],
                 borderWidth: 0,
                 hoverOffset: 10
             }]

@@ -23,7 +23,7 @@
                                 <span class="text-[#85f43a]">{{ $setting->service_name }}</span> - {{ str_replace('_', ' ', $setting->key_name) }}
                             </label>
                             <div class="relative">
-                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">{{ $symbol }}</span>
                                 <input type="number" name="settings[{{ $setting->id }}]" value="{{ $setting->value }}" class="w-full bg-[#111] border-gray-800 text-[#85f43a] font-bold rounded-lg pl-8 pr-4 py-3 focus:border-[#85f43a] focus:ring-0">
                             </div>
                         </div>

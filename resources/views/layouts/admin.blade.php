@@ -7,18 +7,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
+        :root {
+            --primary: {{ get_setting('primary_color', '#85f43a') }};
+            --bg: {{ get_setting('background_color', '#111111') }};
+        }
         [x-cloak] { display: none !important; }
-        body { background-color: #111; color: #fff; }
+        body { background-color: var(--bg); color: #fff; }
         
         /* Custom Pagination */
         .pagination { display: flex; gap: 5px; list-style: none; padding: 0; }
         .page-item { border-radius: 8px; overflow: hidden; }
         .page-link { background: #222; border: 1px solid #333; color: #888; padding: 8px 14px; text-decoration: none; font-size: 13px; font-weight: 600; }
-        .page-item.active .page-link { background: #85f43a; color: #000; border-color: #85f43a; }
+        .page-item.active .page-link { background: var(--primary); color: #000; border-color: var(--primary); }
         .page-item.disabled .page-link { opacity: 0.3; }
     </style>
 </head>
-<body class="bg-[#111] text-gray-200">
+<body class="text-gray-200">
 
     <div class="flex min-h-screen">
         {{-- Sidebar --}}
@@ -30,19 +34,19 @@
                 </a>
             </div>
             <nav class="mt-4 px-4 space-y-2">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.dashboard') ? 'bg-[#85f43a] text-black' : 'hover:bg-gray-800' }}">
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.dashboard') ? 'text-black' : 'hover:bg-gray-800' }}" {!! request()->routeIs('admin.dashboard') ? 'style="background-color: var(--primary)"' : '' !!}>
                     Dashboard
                 </a>
-                <a href="{{ route('admin.users') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.users') ? 'bg-[#85f43a] text-black' : 'hover:bg-gray-800' }}">
+                <a href="{{ route('admin.users') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.users') ? 'text-black' : 'hover:bg-gray-800' }}" {!! request()->routeIs('admin.users') ? 'style="background-color: var(--primary)"' : '' !!}>
                     Users
                 </a>
-                <a href="{{ route('admin.leads') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.leads') ? 'bg-[#85f43a] text-black' : 'hover:bg-gray-800' }}">
+                <a href="{{ route('admin.leads') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.leads') ? 'text-black' : 'hover:bg-gray-800' }}" {!! request()->routeIs('admin.leads') ? 'style="background-color: var(--primary)"' : '' !!}>
                     Leads
                 </a>
-                <a href="{{ route('admin.pricing.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.pricing.index') ? 'bg-[#85f43a] text-black' : 'hover:bg-gray-800' }}">
+                <a href="{{ route('admin.pricing.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.pricing.index') ? 'text-black' : 'hover:bg-gray-800' }}" {!! request()->routeIs('admin.pricing.index') ? 'style="background-color: var(--primary)"' : '' !!}>
                     Pricing Rules
                 </a>
-                <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.index') ? 'bg-[#85f43a] text-black' : 'hover:bg-gray-800' }}">
+                <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.index') ? 'text-black' : 'hover:bg-gray-800' }}" {!! request()->routeIs('admin.settings.index') ? 'style="background-color: var(--primary)"' : '' !!}>
                     General Settings
                 </a>
             </nav>

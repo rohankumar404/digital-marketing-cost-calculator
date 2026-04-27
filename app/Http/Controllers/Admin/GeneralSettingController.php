@@ -14,7 +14,39 @@ class GeneralSettingController extends Controller
     public function index()
     {
         $settings = GeneralSetting::all()->pluck('value', 'key');
-        return view('admin.settings.index', compact('settings'));
+        $currencies = \App\Models\Currency::all();
+        return view('admin.settings.index', compact('settings', 'currencies'));
+    }
+
+    /**
+     * Add a new currency.
+     */
+    public function addCurrency(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|unique:currencies,code',
+            'symbol' => 'required',
+            'rate' => 'required|numeric'
+        ]);
+
+        \App\Models\Currency::create($request->all());
+        \Illuminate\Support\Facades\Cache::forget("all_currencies");
+
+        return redirect()->back()->with('success', 'Currency added successfully.');
+    }
+
+    /**
+     * Delete a currency.
+     */
+    public function deleteCurrency($id)
+    {
+        $currency = \App\Models\Currency::findOrFail($id);
+        if ($currency->is_default) {
+            return redirect()->back()->with('error', 'Cannot delete default currency.');
+        }
+        $currency->delete();
+        \Illuminate\Support\Facades\Cache::forget("all_currencies");
+        return redirect()->back()->with('success', 'Currency deleted successfully.');
     }
 
     /**

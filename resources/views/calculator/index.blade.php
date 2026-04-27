@@ -37,7 +37,7 @@
         .calc-header .badge {
             background: rgba(133, 244, 58, 0.1);
             border: 1px solid rgba(133, 244, 58, 0.2);
-            color: #85f43a;
+            color: var(--primary);
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
@@ -61,7 +61,7 @@
         }
 
         .calc-header h1 span {
-            color: #85f43a;
+            color: var(--primary);
         }
 
         .calc-header p {
@@ -123,9 +123,9 @@
         }
 
         .nav-step.active .nav-circle {
-            background: #85f43a;
+            background: var(--primary);
             color: #000;
-            border-color: #85f43a;
+            border-color: var(--primary);
             box-shadow: 0 0 20px rgba(133, 244, 58, 0.3);
         }
 
@@ -252,7 +252,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            color: #85f43a;
+            color: var(--primary);
         }
 
         .feature-text h5 {
@@ -281,7 +281,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #85f43a;
+            background: var(--primary);
             color: #000;
             font-size: 10px;
             font-weight: 800;
@@ -317,12 +317,12 @@
         }
 
         .pro-feature-item i {
-            color: #85f43a;
+            color: var(--primary);
             font-size: 14px;
         }
 
         .btn-pro {
-            background: #85f43a;
+            background: var(--primary);
             color: #000;
             width: 100%;
             padding: 14px;
@@ -391,13 +391,13 @@
         }
 
         .step-bubble.done {
-            background: #85f43a;
+            background: var(--primary);
             color: #000;
             box-shadow: 0 0 14px rgba(133, 244, 58, .45);
         }
 
         .step-bubble.active {
-            background: #85f43a;
+            background: var(--primary);
             color: #000;
             box-shadow: 0 0 20px rgba(133, 244, 58, .6);
             animation: pulse-dot 1.8s ease infinite;
@@ -430,7 +430,7 @@
         }
 
         .step-connector.done {
-            background: #85f43a;
+            background: var(--primary);
         }
 
         .step-connector.pending {
@@ -453,7 +453,7 @@
         }
 
         .step-label.active {
-            color: #85f43a;
+            color: var(--primary);
         }
 
         .step-label.done {
@@ -471,7 +471,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #47A805, #85f43a);
+            background: linear-gradient(90deg, #47A805, var(--primary));
             border-radius: 2px;
             transition: width .5s cubic-bezier(.4, 0, .2, 1);
             box-shadow: 0 0 10px rgba(133, 244, 58, .5);
@@ -527,7 +527,7 @@
         }
 
         label .required {
-            color: #85f43a;
+            color: var(--primary);
         }
 
         input[type="text"],
@@ -552,7 +552,7 @@
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #85f43a;
+            border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(133, 244, 58, .12);
         }
 
@@ -576,7 +576,7 @@
             left: 14px;
             top: 50%;
             transform: translateY(-50%);
-            color: #85f43a;
+            color: var(--primary);
             font-weight: 700;
             font-size: 15px;
             pointer-events: none;
@@ -634,7 +634,7 @@
         }
 
         .service-card.selected {
-            border-color: #85f43a;
+            border-color: var(--primary);
             background: rgba(133, 244, 58, .06);
             box-shadow: 0 0 18px rgba(133, 244, 58, .15);
         }
@@ -686,7 +686,7 @@
             right: 12px;
             width: 22px;
             height: 22px;
-            background: #85f43a;
+            background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -785,9 +785,9 @@
         }
 
         .platform-tag.active {
-            border-color: #85f43a;
+            border-color: var(--primary);
             background: rgba(133, 244, 58, .1);
-            color: #85f43a;
+            color: var(--primary);
         }
 
         /* ═══════════════════════════════════════════════════
@@ -847,7 +847,7 @@
         .review-tag {
             background: rgba(133, 244, 58, .1);
             border: 1px solid rgba(133, 244, 58, .25);
-            color: #85f43a;
+            color: var(--primary);
             font-size: 12px;
             font-weight: 600;
             padding: 4px 12px;
@@ -878,7 +878,7 @@
 
         .service-estimate-row .cost {
             font-weight: 700;
-            color: #85f43a;
+            color: var(--primary);
         }
 
         .total-box {
@@ -908,12 +908,12 @@
         .total-box .amount {
             font-size: 2rem;
             font-weight: 800;
-            color: #85f43a;
+            color: var(--primary);
         }
 
         .total-box .roi {
             font-size: 12px;
-            color: #85f43a;
+            color: var(--primary);
             background: rgba(133, 244, 58, .1);
             padding: 3px 10px;
             border-radius: 999px;
@@ -965,7 +965,7 @@
         }
 
         .btn-primary {
-            background: #85f43a;
+            background: var(--primary);
             color: #000;
             box-shadow: 0 4px 20px rgba(133, 244, 58, .3);
         }
@@ -983,7 +983,7 @@
         }
 
         .btn-success {
-            background: linear-gradient(135deg, #85f43a, #47A805);
+            background: linear-gradient(135deg, var(--primary), #47A805);
             color: #000;
             box-shadow: 0 4px 24px rgba(133, 244, 58, .4);
             font-size: 15px;
@@ -1023,7 +1023,7 @@
         }
 
         .step-counter span {
-            color: #85f43a;
+            color: var(--primary);
             font-weight: 700;
         }
 
@@ -1034,7 +1034,7 @@
             border-radius: 10px;
             padding: 12px 16px;
             font-size: 13px;
-            color: #85f43a;
+            color: var(--primary);
             display: flex;
             align-items: flex-start;
             gap: 10px;
@@ -1097,7 +1097,7 @@
                     {{-- Header inside card --}}
                     <div class="calc-card-header">
                         <h3 class="card-title">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#85f43a" stroke-width="2.5">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
                                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                             </svg>
                             Calculator Setup
@@ -1108,7 +1108,7 @@
                     {{-- Thin track bar --}}
                     <div class="progress-track" style="height: 2px;">
                         <div class="progress-fill" :style="'width:' + progressPct + '%'"
-                            style="height: 100%; background: #85f43a; box-shadow: 0 0 10px rgba(133,244,58,0.5);"></div>
+                            style="height: 100%; background: var(--primary); box-shadow: 0 0 10px rgba(133,244,58,0.5);"></div>
                     </div>
 
                     {{-- Step 1 --}}
@@ -1214,8 +1214,8 @@
 
                         <div class="info-banner" x-show="errors.services">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <circle cx="8" cy="8" r="7" stroke="#85f43a" stroke-width="1.5" />
-                                <path d="M8 5v4M8 11v.5" stroke="#85f43a" stroke-width="1.8" stroke-linecap="round" />
+                                <circle cx="8" cy="8" r="7" stroke="var(--primary)" stroke-width="1.5" />
+                                <path d="M8 5v4M8 11v.5" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" />
                             </svg>
                             Please select at least one service to continue.
                         </div>
@@ -1539,7 +1539,7 @@
                         {{-- Calculate CTA (before result) --}}
                         <div x-show="result === null" style="text-align:center; padding: 20px 0 4px;">
                             <p style="color:#666; font-size:13px; margin-bottom:16px;">
-                                Click <strong style="color:#85f43a">Calculate</strong> to generate your personalised
+                                Click <strong style="color:var(--primary)">Calculate</strong> to generate your personalised
                                 estimate.
                             </p>
                         </div>
@@ -1609,7 +1609,7 @@
 
                         <div class="benefit-item" style="margin-bottom: 25px; display: flex; gap: 15px;">
                             <div class="benefit-icon"
-                                style="flex-shrink: 0; width: 34px; height: 34px; background: rgba(133,244,58,0.05); color: #85f43a; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                style="flex-shrink: 0; width: 34px; height: 34px; background: rgba(133,244,58,0.05); color: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -1627,7 +1627,7 @@
 
                         <div class="benefit-item" style="margin-bottom: 25px; display: flex; gap: 15px;">
                             <div class="benefit-icon"
-                                style="flex-shrink: 0; width: 34px; height: 34px; background: rgba(133,244,58,0.05); color: #85f43a; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                style="flex-shrink: 0; width: 34px; height: 34px; background: rgba(133,244,58,0.05); color: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <path d="M12 20V10M18 20V4M6 20v-4" />
@@ -1645,7 +1645,7 @@
 
                         <div class="benefit-item" style="display: flex; gap: 15px;">
                             <div class="benefit-icon"
-                                style="flex-shrink: 0; width: 34px; height: 34px; background: rgba(133,244,58,0.05); color: #85f43a; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                style="flex-shrink: 0; width: 34px; height: 34px; background: rgba(133,244,58,0.05); color: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <circle cx="12" cy="12" r="10" />
@@ -1667,11 +1667,11 @@
                     <div class="sidebar-card"
                         style="padding: 40px 30px; text-align: center; position: relative; overflow: hidden; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px;">
                         <div
-                            style="position: absolute; top: 0; right: 0; background: #85f43a; color: #000; font-size: 9px; font-weight: 800; padding: 4px 12px; border-bottom-left-radius: 12px; letter-spacing: 1px;">
+                            style="position: absolute; top: 0; right: 0; background: var(--primary); color: #000; font-size: 9px; font-weight: 800; padding: 4px 12px; border-bottom-left-radius: 12px; letter-spacing: 1px;">
                             PRO</div>
 
                         <div
-                            style="width: 56px; height: 56px; background: rgba(133,244,58,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: #85f43a; border: 1px solid rgba(133,244,58,0.2);">
+                            style="width: 56px; height: 56px; background: rgba(133,244,58,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: var(--primary); border: 1px solid rgba(133,244,58,0.2);">
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -1686,21 +1686,21 @@
                         <ul
                             style="text-align: left; margin-bottom: 35px; font-size: 12px; color: #ccc; list-style: none; padding: 0; max-width: 180px; margin-left: auto; margin-right: auto;">
                             <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#85f43a"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
                                     stroke-width="4">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                                 Connect accounts directly
                             </li>
                             <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#85f43a"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
                                     stroke-width="4">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                                 PDF / CSV Exporting
                             </li>
                             <li style="display: flex; align-items: center; gap: 10px;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#85f43a"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
                                     stroke-width="4">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
@@ -1709,7 +1709,7 @@
                         </ul>
 
                         <button class="btn btn-primary"
-                            style="width: 100%; justify-content: center; padding: 15px; background: #85f43a; color: #000; border-radius: 10px; font-weight: 800; font-size: 13px;">Get
+                            style="width: 100%; justify-content: center; padding: 15px; background: var(--primary); color: #000; border-radius: 10px; font-weight: 800; font-size: 13px;">Get
                             Pro for $9/mo</button>
                     </div>
                 </div> {{-- /.calc-sidebar --}}

@@ -12,3 +12,12 @@ if (!function_exists('get_setting')) {
         });
     }
 }
+
+if (!function_exists('get_currencies')) {
+    function get_currencies()
+    {
+        return Cache::rememberForever("all_currencies", function () {
+            return \App\Models\Currency::all();
+        });
+    }
+}

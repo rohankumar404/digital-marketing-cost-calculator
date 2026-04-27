@@ -32,20 +32,12 @@ class ProposalController extends Controller
 
         // 1. Currency logic
         $targetCurrency = $request->input('currency', 'USD');
-        $currencySymbols = [ 
-            'USD' => '$', 
-            'INR' => 'INR ',
-            'EUR' => 'EUR ',
-            'GBP' => 'GBP ',
-            'AED' => 'AED ',
-            'SAR' => 'SAR ',
-            'QAR' => 'QAR ',
-            'KWD' => 'KWD '
-        ];
-        $currencyRates = [ 'USD' => 1, 'INR' => 83.2, 'EUR' => 0.92, 'GBP' => 0.79, 'AED' => 3.67, 'SAR' => 3.75, 'QAR' => 3.64, 'KWD' => 0.31 ];
+        $allCurrencies = \App\Models\Currency::all();
         
-        $currencySymbol = $currencySymbols[$targetCurrency] ?? '$';
-        $conversionRate = $currencyRates[$targetCurrency] ?? 1;
+        $currency = $allCurrencies->where('code', $targetCurrency)->first() ?: $allCurrencies->where('is_default', true)->first();
+        
+        $currencySymbol = $currency ? $currency->symbol : '$';
+        $conversionRate = $currency ? $currency->rate : 1;
 
         // Custom formatter for the PDF view
         $formatCurrency = function($amt) use ($currencySymbol, $conversionRate, $targetCurrency) {
@@ -54,8 +46,12 @@ class ProposalController extends Controller
             return $currencySymbol . number_format($val, $decimals);
         };
 
+        // 2. Branding logic for PDF
+        $primaryColor = get_setting('primary_color', '#85f43a');
+        $backgroundColor = get_setting('background_color', '#ffffff'); // Usually white for PDF but can be dynamic
+
         // 1. Generate PDF
-        $pdf = Pdf::loadView('pdf.proposal', compact('calculation', 'formatCurrency', 'targetCurrency'));
+        $pdf = Pdf::loadView('pdf.proposal', compact('calculation', 'formatCurrency', 'targetCurrency', 'primaryColor', 'backgroundColor'));
         
         // 2. Define storage path
         $fileName = 'proposal_' . $calculationId . '_' . Str::random(8) . '.pdf';

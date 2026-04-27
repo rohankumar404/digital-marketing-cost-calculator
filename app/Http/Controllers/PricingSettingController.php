@@ -13,7 +13,11 @@ class PricingSettingController extends Controller
     public function index()
     {
         $settings = PricingSetting::all();
-        return view('admin.pricing.index', compact('settings'));
+        $currencyCode = get_setting('default_currency', 'USD');
+        $currency = \App\Models\Currency::where('code', $currencyCode)->first();
+        $symbol = $currency ? $currency->symbol : '$';
+        
+        return view('admin.pricing.index', compact('settings', 'symbol'));
     }
 
     /**
