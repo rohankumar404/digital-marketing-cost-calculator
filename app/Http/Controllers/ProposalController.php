@@ -36,19 +36,19 @@ class ProposalController extends Controller
         
         $currency = $allCurrencies->where('code', $targetCurrency)->first() ?: $allCurrencies->where('is_default', true)->first();
         
-        $currencySymbol = $currency ? $currency->symbol : '$';
+        $currencyCode = $currency ? $currency->code : 'USD';
         $conversionRate = $currency ? $currency->rate : 1;
 
         // Custom formatter for the PDF view
-        $formatCurrency = function($amt) use ($currencySymbol, $conversionRate, $targetCurrency) {
+        $formatCurrency = function($amt) use ($currencyCode, $conversionRate, $targetCurrency) {
             $val = ($amt ?? 0) * $conversionRate;
             $decimals = ($targetCurrency === 'KWD' ? 3 : 0);
-            return $currencySymbol . number_format($val, $decimals);
+            return $currencyCode . ' ' . number_format($val, $decimals);
         };
 
         // 2. Branding logic for PDF
         $primaryColor = get_setting('primary_color', '#85f43a');
-        $backgroundColor = get_setting('background_color', '#ffffff'); // Usually white for PDF but can be dynamic
+        $backgroundColor = get_setting('background_color', '#1a1a1a'); // Match previous branding defaults
 
         // 1. Generate PDF
         $pdf = Pdf::loadView('pdf.proposal', compact('calculation', 'formatCurrency', 'targetCurrency', 'primaryColor', 'backgroundColor'));

@@ -7,7 +7,7 @@
     .results-page {
         min-height: 100vh;
         background-color: var(--bg);
-        color: #ffffff;
+        color: var(--text);
         padding: 40px 20px;
         font-family: 'Inter', sans-serif;
     }
@@ -25,7 +25,7 @@
         margin-bottom: 10px;
     }
     .header p {
-        color: #aaa;
+        color: var(--text-muted);
         font-size: 16px;
     }
 
@@ -42,15 +42,15 @@
 
     /* Cards */
     .card {
-        background: rgba(255,255,255,0.05);
+        background: var(--bg-card);
         border-radius: 20px;
         padding: 30px;
-        border: 1px solid rgba(255,255,255,0.1);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         margin-bottom: 20px;
     }
     .highlight-card {
-        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, #2a2a2a 100%);
+        background: var(--bg-card);
         border-left: 5px solid var(--primary);
         text-align: center;
     }
@@ -70,7 +70,7 @@
         margin: 10px 0;
     }
     .sub-value {
-        color: #666;
+        color: var(--text-muted);
         font-size: 14px;
     }
 
@@ -82,7 +82,7 @@
         margin-top: 30px;
     }
     .metric-box {
-        background: #3a3a3a;
+        background: rgba(128, 128, 128, 0.05);
         padding: 20px;
         border-radius: 15px;
         text-align: center;
@@ -90,7 +90,7 @@
     .metric-val {
         font-size: 24px;
         font-weight: 700;
-        color: #ffffff;
+        color: var(--text);
         display: block;
         margin-top: 5px;
     }
@@ -99,7 +99,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 15px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid var(--border);
     }
     .breakdown-item:last-child { border-bottom: none; }
     .svc-cost { font-weight: 700; color: var(--primary); font-size: 18px; }
@@ -119,7 +119,7 @@
         text-align: center;
     }
     .gate-card {
-        background: #222;
+        background: var(--bg-card);
         border: 2px solid var(--primary);
         max-width: 450px;
         padding: 40px;
@@ -141,8 +141,8 @@
         padding: 12px 25px; border-radius: 12px; font-weight: 600;
         cursor: pointer; text-decoration: none; transition: 0.3s; border: none;
     }
-    .btn-primary { background: var(--primary); color: var(--bg); }
-    .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+    .btn-primary { background: var(--primary); color: #000; }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
 </style>
 
 <div class="results-page">

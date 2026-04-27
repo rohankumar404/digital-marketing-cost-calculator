@@ -21,13 +21,13 @@
     <style>
         :root {
             --bg: {{ get_setting('background_color', '#1A1A1A') }};
-            --bg-card: #242424;
-            --bg-input: #2D2D2D;
+            --bg-card: {{ get_setting('card_bg_color', '#242424') }};
+            --bg-input: rgba(255, 255, 255, 0.05);
             --primary: {{ get_setting('primary_color', '#85f43a') }};
             --secondary: #47A805;
-            --text: #ffffff;
-            --text-muted: #888888;
-            --border: rgba(255, 255, 255, 0.08);
+            --text: {{ get_setting('text_main_color', '#ffffff') }};
+            --text-muted: {{ get_setting('text_muted_color', '#888888') }};
+            --border: rgba(128, 128, 128, 0.15);
             --radius: 16px;
         }
 
@@ -51,8 +51,8 @@
             height: 90px;
             display: flex;
             align-items: center;
-            background: rgba(0, 0, 0, 0.4);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 10000;
@@ -87,7 +87,7 @@
         }
 
         .nav-left-link {
-            color: #fff;
+            color: var(--text);
             text-decoration: none;
             font-size: 13px;
             font-weight: 800;
@@ -108,7 +108,7 @@
         }
 
         .nav-action-link {
-            color: #fff;
+            color: var(--text);
             text-decoration: none;
             font-size: 13px;
             font-weight: 800;
@@ -146,7 +146,7 @@
         }
 
         .nav-link {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
@@ -156,8 +156,8 @@
         /* Currency Switcher Styles */
         .currency-switcher {
             position: relative;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(128, 128, 128, 0.05);
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 5px 12px;
             display: flex;
@@ -168,7 +168,7 @@
         }
 
         .currency-switcher:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(128, 128, 128, 0.1);
         }
 
         .currency-dropdown {
@@ -176,8 +176,8 @@
             top: 100%;
             right: 0;
             margin-top: 10px;
-            background: #222;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 12px;
             width: 160px;
             z-index: 10001;
@@ -195,7 +195,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #aaa;
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 13px;
             font-weight: 600;
@@ -204,11 +204,11 @@
 
         .currency-opt:hover {
             background: rgba(133, 244, 58, 0.1);
-            color: #85f43a;
+            color: var(--primary);
         }
 
         .currency-opt.active {
-            color: #85f43a;
+            color: var(--primary);
             background: rgba(133, 244, 58, 0.05);
         }
 
@@ -229,8 +229,8 @@
         [x-cloak] { display: none !important; }
 
         .elite-modal-card {
-            background: #1a1a1a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 24px;
             padding: 45px;
             width: 100%;
@@ -258,9 +258,9 @@
             width: 100%;
             padding: 15px 20px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
+            background: rgba(128, 128, 128, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text);
             font-size: 14px;
             transition: 0.3s;
             outline: none;
@@ -269,7 +269,7 @@
 
         .elite-input:focus {
             border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(128, 128, 128, 0.08);
             box-shadow: 0 0 20px rgba(133, 244, 58, 0.1);
         }
 
@@ -287,7 +287,7 @@
 
         /* Footer */
         footer {
-            background: #111;
+            background: var(--bg-card);
             padding: 60px 5% 40px;
             margin-top: 80px;
             border-top: 1px solid var(--border);
@@ -307,7 +307,7 @@
         }
 
         .footer-about {
-            color: #888;
+            color: var(--text-muted);
             font-size: 14px;
             max-width: 400px;
         }
@@ -321,7 +321,7 @@
 
         .footer-links a {
             display: block;
-            color: #888;
+            color: var(--text-muted);
             text-decoration: none;
             margin-bottom: 10px;
             font-size: 14px;
@@ -339,7 +339,7 @@
             border-top: 1px solid var(--border);
             text-align: center;
             font-size: 12px;
-            color: #555;
+            color: var(--text-muted);
         }
 
         @media (max-width: 768px) {
@@ -400,8 +400,8 @@
             <nav class="nav-actions" style="display: flex; align-items: center; gap: 20px;">
                 {{-- Currency Switcher --}}
                 <div x-data="{ dropdownOpen: false }" class="currency-switcher" @click.stop="dropdownOpen = !dropdownOpen">
-                    <span style="font-size: 16px; color: #85f43a; font-weight: 800;" x-text="$store.mapsily.symbols[$store.mapsily.currency]"></span>
-                    <span style="font-size: 12px; color: #fff; font-weight: 700; text-transform: uppercase;" x-text="$store.mapsily.currency"></span>
+                    <span style="font-size: 16px; color: var(--primary); font-weight: 800;" x-text="$store.mapsily.symbols[$store.mapsily.currency]"></span>
+                    <span style="font-size: 12px; color: var(--text); font-weight: 700; text-transform: uppercase;" x-text="$store.mapsily.currency"></span>
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transition: 0.3s;" :style="dropdownOpen ? 'transform: rotate(180deg)' : ''">
                         <path d="M6 9l6 6 6-6" />
                     </svg>
@@ -425,9 +425,9 @@
                     </svg>
                 </a>
                 @auth
-                    <div style="display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.05); padding: 5px 15px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">
-                        <span style="color: #85f43a; font-size: 13px; font-weight: 800; text-transform: uppercase;">Hi, {{ explode(' ', auth()->user()->name)[0] }}</span>
-                        <div style="width: 1px; height: 12px; background: rgba(255,255,255,0.2);"></div>
+                    <div style="display: flex; align-items: center; gap: 15px; background: rgba(128,128,128,0.05); padding: 5px 15px; border-radius: 50px; border: 1px solid var(--border);">
+                        <span style="color: var(--primary); font-size: 13px; font-weight: 800; text-transform: uppercase;">Hi, {{ explode(' ', auth()->user()->name)[0] }}</span>
+                        <div style="width: 1px; height: 12px; background: var(--border);"></div>
                         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                             @csrf
                             <button type="submit" class="nav-link" style="background: none; border: none; cursor: pointer; color: #ff4444; font-weight: 700; font-size: 13px;">Logout</button>
@@ -435,7 +435,7 @@
                     </div>
                 @else
                     <a href="{{ route('login') }}" class="nav-link">Log in</a>
-                    <a href="{{ route('register') }}" class="nav-link">Register</a>
+                    <a href="{{ route('register') }}" class="nav-link" style="margin-left: 10px;">Register</a>
                 @endauth
             </nav>
         </div>
@@ -446,23 +446,23 @@
     </main>
 
     {{-- CTA Section --}}
-    <section style="padding: 100px 5%; position: relative; overflow: hidden;">
+    <section style="padding: 100px 5%; position: relative; overflow: hidden; background: var(--bg);">
         <div
-            style="max-width: 1100px; margin: 0 auto; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; border-radius: 30px; padding: 80px 40px; text-align: center; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 40px 100px rgba(0,0,0,0.5);">
+            style="max-width: 1100px; margin: 0 auto; background: var(--bg-card); border-radius: 30px; padding: 80px 40px; text-align: center; border: 1px solid var(--border); box-shadow: 0 40px 100px rgba(0,0,0,0.2);">
 
             <div
-                style="width: 60px; height: 60px; background: rgba(133,244,58,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; color: #85f43a;">
+                style="width: 60px; height: 60px; background: rgba(133,244,58,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; color: var(--primary);">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 20V10M18 20V4M6 20v-4" />
                 </svg>
             </div>
 
             <h2
-                style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: #fff; margin-bottom: 20px; line-height: 1.1;">
+                style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: var(--text); margin-bottom: 20px; line-height: 1.1;">
                 Need better performance? <br><span style="color: var(--primary);">Let Mapsily grow your brand.</span>
             </h2>
 
-            <p style="color: #aaa; max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; line-height: 1.8;">
+            <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; line-height: 1.8;">
                 Stop guessing what works. Our advanced growth analysts map your metrics directly against aggressive
                 industry benchmarks building a personalized strategy engineered for scale.
             </p>
@@ -476,7 +476,7 @@
                     Book Free Analysis
                 </button>
                 <a href="#" class="header-btn"
-                    style="padding: 22px 50px; font-size: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.15); color: #fff; min-width: 250px; justify-content: center;">
+                    style="padding: 22px 50px; font-size: 16px; background: rgba(128,128,128,0.05); border: 1px solid var(--border); color: var(--text); min-width: 250px; justify-content: center;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 12px;">
                         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                     </svg>
@@ -485,8 +485,6 @@
             </div>
         </div>
     </section>
-
-
 
     {{-- Atmosphere Glows (Contained) --}}
     <div
@@ -534,15 +532,15 @@
         <div class="elite-modal-card" @click.stop>
 
             <button @click="openLead = false"
-                style="position: absolute; top: 25px; right: 25px; background: none; border: none; color: #666; font-size: 32px; cursor: pointer; transition: 0.3s; z-index: 20;">&times;</button>
+                style="position: absolute; top: 25px; right: 25px; background: none; border: none; color: var(--text-muted); font-size: 32px; cursor: pointer; transition: 0.3s; z-index: 20;">&times;</button>
 
             <div style="margin-bottom: 30px;">
-                <div style="display: inline-flex; align-items: center; gap: 8px; color: #85f43a; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px;">
-                    <span style="width: 8px; height: 1px; background: #85f43a;"></span>
+                <div style="display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px;">
+                    <span style="width: 8px; height: 1px; background: var(--primary);"></span>
                     Elite Strategy Access
                 </div>
-                <h3 style="font-size: 32px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 10px;">Grow With Mapsily</h3>
-                <p style="color: #666; font-size: 14px; line-height: 1.6;">Our strategy expert will evaluate your audit and reach out within 24 hours.</p>
+                <h3 style="font-size: 32px; font-weight: 800; color: var(--text); line-height: 1.1; margin-bottom: 10px;">Grow With Mapsily</h3>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">Our strategy expert will evaluate your audit and reach out within 24 hours.</p>
             </div>
 
             <form x-data="{ 
@@ -602,10 +600,10 @@
 
                 <div x-show="success" x-transition class="text-center" style="padding: 40px 0;">
                     <div
-                        style="width: 80px; height: 80px; background: rgba(133,244,58,0.1); color: #85f43a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; font-size: 40px;">
+                        style="width: 80px; height: 80px; background: rgba(133,244,58,0.1); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; font-size: 40px;">
                         ✓</div>
-                    <h4 style="font-size: 24px; color: #fff; margin-bottom: 10px;">Enquiry Received!</h4>
-                    <p style="color: #888; font-size: 16px; margin-bottom: 40px;">Our growth expert will reach out
+                    <h4 style="font-size: 24px; color: var(--text); margin-bottom: 10px;">Enquiry Received!</h4>
+                    <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 40px;">Our growth expert will reach out
                         within 24 hours.</p>
                     <button @click="openLead = false; success = false" class="header-btn"
                         style="width: 100%; justify-content: center; background: #333; color: #fff;">Close

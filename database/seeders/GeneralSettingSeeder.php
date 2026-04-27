@@ -21,6 +21,9 @@ class GeneralSettingSeeder extends Seeder
             'footer_copyright' => 'Mapsily. All rights reserved.',
             'primary_color' => '#85f43a',
             'background_color' => '#1a1a1a',
+            'card_bg_color' => '#242424',
+            'text_main_color' => '#ffffff',
+            'text_muted_color' => '#888888',
             'default_currency' => 'USD',
         ];
 

@@ -59,24 +59,56 @@
 
             {{-- Aesthetics & Finance --}}
             <div class="bg-[#1a1a1a] rounded-2xl border border-gray-800 p-8">
-                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-                    Aesthetics & Finance
-                </h3>
+                <div class="flex items-center justify-between mb-8 border-b border-gray-800 pb-4">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                        Aesthetics & Finance
+                    </h3>
+                    <button type="button" onclick="resetToDefaults()" class="text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg transition border border-gray-700 flex items-center gap-2">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        Reset to Defaults
+                    </button>
+                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Primary Color</label>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Primary Accent</label>
                         <div class="flex gap-3">
                             <input type="color" name="primary_color" value="{{ $settings['primary_color'] ?? '#85f43a' }}" class="h-12 w-20 bg-[#111] border-gray-800 rounded-lg cursor-pointer">
                             <input type="text" value="{{ $settings['primary_color'] ?? '#85f43a' }}" readonly class="flex-1 bg-[#111] border-gray-800 text-gray-400 rounded-lg px-4 text-sm">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Background Color</label>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex justify-between">
+                            Background Base
+                            <button type="button" onclick="autoAdjust()" class="text-[var(--primary)] hover:underline normal-case font-normal text-[10px]">Auto-Optimize Contrast</button>
+                        </label>
                         <div class="flex gap-3">
                             <input type="color" name="background_color" value="{{ $settings['background_color'] ?? '#1a1a1a' }}" class="h-12 w-20 bg-[#111] border-gray-800 rounded-lg cursor-pointer">
                             <input type="text" value="{{ $settings['background_color'] ?? '#1a1a1a' }}" readonly class="flex-1 bg-[#111] border-gray-800 text-gray-400 rounded-lg px-4 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Card/Section Background</label>
+                        <div class="flex gap-3">
+                            <input type="color" name="card_bg_color" value="{{ $settings['card_bg_color'] ?? '#242424' }}" class="h-12 w-20 bg-[#111] border-gray-800 rounded-lg cursor-pointer">
+                            <input type="text" value="{{ $settings['card_bg_color'] ?? '#242424' }}" readonly class="flex-1 bg-[#111] border-gray-800 text-gray-400 rounded-lg px-4 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Main Text Color</label>
+                        <div class="flex gap-3">
+                            <input type="color" name="text_main_color" value="{{ $settings['text_main_color'] ?? '#ffffff' }}" class="h-12 w-20 bg-[#111] border-gray-800 rounded-lg cursor-pointer">
+                            <input type="text" value="{{ $settings['text_main_color'] ?? '#ffffff' }}" readonly class="flex-1 bg-[#111] border-gray-800 text-gray-400 rounded-lg px-4 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Muted Text Color</label>
+                        <div class="flex gap-3">
+                            <input type="color" name="text_muted_color" value="{{ $settings['text_muted_color'] ?? '#888888' }}" class="h-12 w-20 bg-[#111] border-gray-800 rounded-lg cursor-pointer">
+                            <input type="text" value="{{ $settings['text_muted_color'] ?? '#888888' }}" readonly class="flex-1 bg-[#111] border-gray-800 text-gray-400 rounded-lg px-4 text-sm">
                         </div>
                     </div>
                     <div>
@@ -170,4 +202,74 @@
     </div>
 </div>
 </div>
+@push('scripts')
+<script>
+    function resetToDefaults() {
+        if(!confirm('Are you sure you want to reset all branding to Mapsily Elite Defaults?')) return;
+        
+        const defaults = {
+            'primary_color': '#85f43a',
+            'background_color': '#1a1a1a',
+            'card_bg_color': '#242424',
+            'text_main_color': '#ffffff',
+            'text_muted_color': '#888888'
+        };
+        
+        Object.keys(defaults).forEach(name => {
+            const input = document.querySelector(`input[name="${name}"]`);
+            if(input) {
+                input.value = defaults[name];
+                if(input.nextElementSibling) {
+                    input.nextElementSibling.value = defaults[name];
+                }
+            }
+        });
+    }
+
+    function getContrastYIQ(hexcolor){
+        hexcolor = hexcolor.replace("#", "");
+        var r = parseInt(hexcolor.substr(0,2),16);
+        var g = parseInt(hexcolor.substr(2,2),16);
+        var b = parseInt(hexcolor.substr(4,2),16);
+        var yiq = ((r*299)+(g*587)+(b*114))/1000;
+        return (yiq >= 128) ? 'light' : 'dark';
+    }
+
+    function autoAdjust() {
+        const bg = document.querySelector('input[name="background_color"]').value;
+        const mode = getContrastYIQ(bg);
+        
+        const textMain = document.querySelector('input[name="text_main_color"]');
+        const textMuted = document.querySelector('input[name="text_muted_color"]');
+        const cardBg = document.querySelector('input[name="card_bg_color"]');
+        
+        if (mode === 'light') {
+            textMain.value = "#111111";
+            textMuted.value = "#666666";
+            cardBg.value = "#f8f8f8";
+        } else {
+            textMain.value = "#ffffff";
+            textMuted.value = "#888888";
+            cardBg.value = "#242424";
+        }
+        
+        // Update display text
+        textMain.nextElementSibling.value = textMain.value;
+        textMuted.nextElementSibling.value = textMuted.value;
+        cardBg.nextElementSibling.value = cardBg.value;
+    }
+
+    document.querySelector('input[name="background_color"]').addEventListener('input', function(e) {
+        this.nextElementSibling.value = e.target.value;
+    });
+    
+    document.querySelectorAll('input[type="color"]').forEach(input => {
+        input.addEventListener('input', function(e) {
+            if(this.nextElementSibling && this.nextElementSibling.tagName === 'INPUT') {
+                this.nextElementSibling.value = e.target.value;
+            }
+        });
+    });
+</script>
+@endpush
 @endsection
