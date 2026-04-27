@@ -24,8 +24,13 @@ class LeadController extends Controller
         // Save to DB
         \App\Models\Lead::create(array_merge($validated, ['type' => 'growth_solution']));
 
-        // Send internal notification
-        Mail::to('leads@mapsily.com')->send(new InternalLeadNotification($validated));
+        // Send internal notification to multiple recipients if configured
+        $rawEmails = get_setting('lead_notification_emails', 'leads@mapsily.com');
+        $emailArray = array_filter(array_map('trim', explode(',', $rawEmails)));
+        
+        if (!empty($emailArray)) {
+            Mail::to($emailArray)->send(new InternalLeadNotification($validated));
+        }
 
         return response()->json([
             'success' => true,

@@ -425,6 +425,14 @@
                     </svg>
                 </a>
                 @auth
+                    @if(auth()->user()->is_admin)
+                        <a href="{{ route('admin.dashboard') }}" class="nav-action-link" style="display: flex; align-items: center; gap: 8px; background: rgba(var(--primary), 0.1); padding: 5px 12px; border-radius: 8px; border: 1px solid var(--primary); opacity: 1; color: var(--primary);">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                            Admin
+                        </a>
+                    @endif
                     <div style="display: flex; align-items: center; gap: 15px; background: rgba(128,128,128,0.05); padding: 5px 15px; border-radius: 50px; border: 1px solid var(--border);">
                         <span style="color: var(--primary); font-size: 13px; font-weight: 800; text-transform: uppercase;">Hi, {{ explode(' ', auth()->user()->name)[0] }}</span>
                         <div style="width: 1px; height: 12px; background: var(--border);"></div>
@@ -500,10 +508,11 @@
                 <a href="/" class="footer-logo">
                     <img src="/assets/img/Mapsily-wihte-logo.png" alt="Mapsily Logo">
                 </a>
-                <p class="footer-about">
-                    Mapsily is a performance-driven digital marketing agency helping businesses scale with data-backed
-                    strategies in SEO, PPC, and Social Media. Our calculator is designed to provide entrepreneurs with
-                    transparent, realistic marketing investment forecasts.
+                <p class="footer-about" style="margin-top: 15px; display: flex; align-items: center; gap: 8px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Support: {{ get_setting('support_email', 'support@mapsily.com') }}
                 </p>
             </div>
             <div class="footer-links">

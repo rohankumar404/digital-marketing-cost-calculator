@@ -50,6 +50,37 @@ class GeneralSettingController extends Controller
     }
 
     /**
+     * Update admin profile (Email and Password).
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+        
+        $request->validate([
+            'current_password' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:8|confirmed',
+        ]);
+        
+        // Verify current password
+        if (!\Illuminate\Support\Facades\Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->with('error', 'Current password does not match our records.');
+        }
+        
+        // Update Email
+        $user->email = $request->email;
+        
+        // Update Password if provided
+        if ($request->filled('password')) {
+            $user->password = \Illuminate\Support\Facades\Hash::make($request->password);
+        }
+        
+        $user->save();
+        
+        return redirect()->back()->with('success', 'Admin security credentials updated successfully.');
+    }
+
+    /**
      * Update general settings.
      */
     public function update(Request $request)

@@ -51,8 +51,9 @@
                         <input type="email" name="support_email" value="{{ $settings['support_email'] ?? '' }}" class="w-full bg-[#111] border-gray-800 text-white rounded-lg px-4 py-3 focus:border-[var(--primary)] focus:ring-0">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Footer Copyright</label>
-                        <input type="text" name="footer_copyright" value="{{ $settings['footer_copyright'] ?? '' }}" class="w-full bg-[#111] border-gray-800 text-white rounded-lg px-4 py-3 focus:border-[var(--primary)] focus:ring-0">
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Lead Notification Emails</label>
+                        <input type="text" name="lead_notification_emails" value="{{ $settings['lead_notification_emails'] ?? '' }}" placeholder="email1@example.com, email2@example.com" class="w-full bg-[#111] border-gray-800 text-white rounded-lg px-4 py-3 focus:border-[var(--primary)] focus:ring-0">
+                        <p class="text-[10px] text-gray-500 mt-1 italic">Separate multiple emails with commas.</p>
                     </div>
                 </div>
             </div>
@@ -199,8 +200,63 @@
                 </form>
             </div>
         </div>
+            </div>
+        </div>
+
+        {{-- Account Security --}}
+        <div class="bg-[#1a1a1a] rounded-2xl border border-gray-800 p-8 mt-8">
+            <div class="flex items-center justify-between mb-8 border-b border-gray-800 pb-4">
+                <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    Account Security (Admin ID & Password)
+                </h3>
+            </div>
+
+            <form action="{{ route('admin.settings.profile.update') }}" method="POST">
+                @csrf
+                @method('PATCH')
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {{-- Left Side: Identity --}}
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Current Admin ID (Email)</label>
+                            <input type="email" value="{{ auth()->user()->email }}" readonly class="w-full bg-[#111] border-gray-800 text-gray-500 rounded-lg px-4 py-3 cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">New Admin ID (Email)</label>
+                            <input type="email" name="email" value="{{ auth()->user()->email }}" required class="w-full bg-[#111] border-gray-800 text-white rounded-lg px-4 py-3 focus:border-red-500 focus:ring-0">
+                        </div>
+                    </div>
+
+                    {{-- Right Side: Password --}}
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">New Password (Leave blank to keep current)</label>
+                            <input type="password" name="password" class="w-full bg-[#111] border-gray-800 text-white rounded-lg px-4 py-3 focus:border-red-500 focus:ring-0" placeholder="••••••••">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Confirm New Password</label>
+                            <input type="password" name="password_confirmation" class="w-full bg-[#111] border-gray-800 text-white rounded-lg px-4 py-3 focus:border-red-500 focus:ring-0" placeholder="••••••••">
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Verification Footer --}}
+                <div class="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="max-w-md w-full">
+                        <label class="block text-xs font-bold text-red-500 uppercase tracking-wider mb-2">Verification Required</label>
+                        <input type="password" name="current_password" required placeholder="Enter Current Password to Confirm Changes" class="w-full bg-[#111] border-red-500/30 border text-white rounded-lg px-4 py-3 focus:border-red-500 focus:ring-0">
+                    </div>
+                    <button type="submit" class="w-full md:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-xl transition shadow-lg shadow-red-600/20">
+                        Update Security Credentials
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 @push('scripts')
 <script>

@@ -24,6 +24,7 @@ class GeneralSettingSeeder extends Seeder
             'card_bg_color' => '#242424',
             'text_main_color' => '#ffffff',
             'text_muted_color' => '#888888',
+            'lead_notification_emails' => 'leads@mapsily.com',
             'default_currency' => 'USD',
         ];
 
