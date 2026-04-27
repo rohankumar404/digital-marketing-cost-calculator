@@ -516,7 +516,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; {{ date('Y') }} Mapsily. All rights reserved. | Built for modern businesses.
+            &copy; {{ date('Y') }} {{ get_setting('footer_copyright', 'Mapsily. All rights reserved.') }} | Built for modern businesses.
         </div>
     </footer>
 
@@ -587,7 +587,7 @@
                     </div>
 
                     <button type="submit" class="header-btn" style="width: 100%; justify-content: center; padding: 18px;" x-bind:disabled="loading">
-                        <span x-show="!loading">Initialize Strategy Request →</span>
+                        <span x-show="!loading">{{ get_setting('main_cta_text', 'Initialize Strategy Request') }} →</span>
                         <span x-show="loading">Securing Connection...</span>
                     </button>
                 </div>

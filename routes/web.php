@@ -27,6 +27,9 @@ Route::prefix('admin')->middleware(['auth', App\Http\Middleware\IsAdmin::class])
     
     Route::get('/pricing', [App\Http\Controllers\PricingSettingController::class, 'index'])->name('admin.pricing.index');
     Route::patch('/pricing', [App\Http\Controllers\PricingSettingController::class, 'update'])->name('admin.pricing.update');
+
+    Route::get('/settings', [App\Http\Controllers\Admin\GeneralSettingController::class, 'index'])->name('admin.settings.index');
+    Route::patch('/settings', [App\Http\Controllers\Admin\GeneralSettingController::class, 'update'])->name('admin.settings.update');
 });
 
 // Profile Routes

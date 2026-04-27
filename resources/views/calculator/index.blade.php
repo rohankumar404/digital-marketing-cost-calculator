@@ -1076,9 +1076,8 @@
                 </svg>
                 Free Tool
             </div>
-            <h1>Digital Marketing <span>Cost Calculator</span></h1>
-            <p>Calculate your estimated marketing budget across SEO, Google Ads, and Social Media in seconds. Track your
-                growth and see how you stack up against the competition.</p>
+            <h1>{{ get_setting('tool_title', 'Digital Marketing Cost Calculator') }}</h1>
+            <p>{{ get_setting('tool_tagline', 'Calculate your estimated marketing budget across SEO, Google Ads, and Social Media in seconds. Track your growth and see how you stack up against the competition.') }}</p>
         </div>
 
         {{-- Progress Navigator --}}

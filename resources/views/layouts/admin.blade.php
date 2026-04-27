@@ -42,6 +42,9 @@
                 <a href="{{ route('admin.pricing.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.pricing.index') ? 'bg-[#85f43a] text-black' : 'hover:bg-gray-800' }}">
                     Pricing Rules
                 </a>
+                <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs('admin.settings.index') ? 'bg-[#85f43a] text-black' : 'hover:bg-gray-800' }}">
+                    General Settings
+                </a>
             </nav>
         </aside>
 

@@ -16,13 +16,15 @@
             </h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($settings as $key => $setting)
-                    @if(str_contains($key, 'cost') || str_contains($key, 'fee') || str_contains($key, 'rate'))
+                @foreach($settings as $setting)
+                    @if(str_contains($setting->key_name, 'cost') || str_contains($setting->key_name, 'fee') || str_contains($setting->key_name, 'rate'))
                         <div class="bg-[#242424] p-5 rounded-xl border border-gray-800">
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{{ str_replace('_', ' ', $key) }}</label>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                                <span class="text-[#85f43a]">{{ $setting->service_name }}</span> - {{ str_replace('_', ' ', $setting->key_name) }}
+                            </label>
                             <div class="relative">
                                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
-                                <input type="number" name="settings[{{ $key }}]" value="{{ $setting }}" class="w-full bg-[#111] border-gray-800 text-[#85f43a] font-bold rounded-lg pl-8 pr-4 py-3 focus:border-[#85f43a] focus:ring-0">
+                                <input type="number" name="settings[{{ $setting->id }}]" value="{{ $setting->value }}" class="w-full bg-[#111] border-gray-800 text-[#85f43a] font-bold rounded-lg pl-8 pr-4 py-3 focus:border-[#85f43a] focus:ring-0">
                             </div>
                         </div>
                     @endif
@@ -38,13 +40,15 @@
             </h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($settings as $key => $setting)
-                    @if(str_contains($key, 'multiplier'))
+                @foreach($settings as $setting)
+                    @if(str_contains($setting->key_name, 'multiplier'))
                         <div class="bg-[#242424] p-5 rounded-xl border border-gray-800">
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{{ str_replace('_', ' ', $key) }}</label>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                                <span class="text-[#85f43a]">{{ $setting->service_name }}</span> - {{ str_replace('_', ' ', $setting->key_name) }}
+                            </label>
                             <div class="relative">
                                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">x</span>
-                                <input type="number" step="0.1" name="settings[{{ $key }}]" value="{{ $setting }}" class="w-full bg-[#111] border-gray-800 text-[#85f43a] font-bold rounded-lg pl-8 pr-4 py-3 focus:border-[#85f43a] focus:ring-0">
+                                <input type="number" step="0.1" name="settings[{{ $setting->id }}]" value="{{ $setting->value }}" class="w-full bg-[#111] border-gray-800 text-[#85f43a] font-bold rounded-lg pl-8 pr-4 py-3 focus:border-[#85f43a] focus:ring-0">
                             </div>
                         </div>
                     @endif

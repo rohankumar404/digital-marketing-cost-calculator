@@ -13,11 +13,7 @@ class PricingSettingController extends Controller
     public function index()
     {
         $settings = PricingSetting::all();
-        
-        // Group settings by service for better UI
-        $grouped = $settings->groupBy('service_name');
-
-        return view('admin.pricing.index', compact('grouped'));
+        return view('admin.pricing.index', compact('settings'));
     }
 
     /**
