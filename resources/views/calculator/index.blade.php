@@ -609,19 +609,23 @@
                                                                                         ═══════════════════════════════════════════════════ */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-            gap: 14px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
         }
 
         .service-card {
             position: relative;
-            border: 2px solid #323232;
+            border: 1.5px solid #2e2e2e;
             border-radius: 14px;
-            padding: 20px 16px;
+            padding: 24px;
             cursor: pointer;
-            transition: border-color .2s, background .2s, transform .15s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             user-select: none;
             background: #252525;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
         }
 
         .service-card:hover {
@@ -643,30 +647,36 @@
         }
 
         .service-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            margin-bottom: 12px;
+            font-size: 24px;
             background: rgba(133, 244, 58, .08);
+            border: 1px solid rgba(133, 244, 58, .1);
         }
 
         .service-card.selected .service-icon {
             background: rgba(133, 244, 58, .15);
         }
 
+        .service-content {
+            flex: 1;
+        }
+
         .service-name {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: #fff;
         }
 
         .service-desc {
-            font-size: 12px;
-            color: #777;
+            font-size: 13px;
+            color: #888;
             line-height: 1.5;
         }
 
@@ -1217,10 +1227,15 @@
                                     :for="'svc_' + svc.key">
                                     <input type="checkbox" :id="'svc_' + svc.key" :value="svc.key"
                                         @change="toggleService(svc.key)">
-                                    <div class="check-badge">✓</div>
+                                    
                                     <div class="service-icon" x-text="svc.icon"></div>
-                                    <div class="service-name" x-text="svc.name"></div>
-                                    <div class="service-desc" x-text="svc.desc"></div>
+                                    
+                                    <div class="service-content">
+                                        <div class="service-name" x-text="svc.name"></div>
+                                        <div class="service-desc" x-text="svc.desc"></div>
+                                    </div>
+
+                                    <div class="check-badge">✓</div>
                                 </label>
                             </template>
                         </div>
