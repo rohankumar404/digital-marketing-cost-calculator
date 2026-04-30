@@ -25,7 +25,7 @@ class LeadController extends Controller
         \App\Models\Lead::create(array_merge($validated, ['type' => 'growth_solution']));
 
         // Send internal notification to multiple recipients if configured
-        $rawEmails = get_setting('lead_notification_emails', 'leads@mapsily.com');
+        $rawEmails = get_setting('lead_notification_emails', 'inquiry@mapsily.com');
         $emailArray = array_filter(array_map('trim', explode(',', $rawEmails)));
         
         if (!empty($emailArray)) {
