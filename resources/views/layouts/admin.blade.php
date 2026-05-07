@@ -29,7 +29,7 @@
         <aside class="w-64 bg-[#1a1a1a] border-r border-gray-800 hidden md:block">
             <div class="p-6">
                 <a href="/" class="flex items-center gap-2">
-                    <img src="/assets/img/Mapsily-wihte-logo.png" class="h-8 w-auto">
+                    <img src="https://mapsily.com/wp-content/uploads/2026/04/Mapsily-wihte-logo.png" class="h-8 w-auto">
                     <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Admin</span>
                 </a>
             </div>

@@ -1846,9 +1846,9 @@
                         }
 
                         if (this.isSelected('social')) {
-                            const posts = Number(this.inputs.social.posts_per_month) || 12;
+                            const posts = (Number(this.inputs.social.posts_per_week) || 3) * 4;
                             const paidBudget = Number(this.inputs.social.paid_budget) || 0;
-                            const platforms = this.inputs.social.platforms.length || 1;
+                            const platforms = (this.inputs.social.platforms || []).length || 1;
                             const cost = Math.round(posts * 45 * Math.min(platforms, 3) * 0.6 + paidBudget + 300);
                             breakdown.push({ icon: '📱', name: 'Social Media', cost });
                             total += cost;

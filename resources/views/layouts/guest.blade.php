@@ -37,7 +37,7 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
         <div class="mb-8">
             <a href="/">
-                <img src="/assets/img/Mapsily-wihte-logo.png" alt="Mapsily Logo" class="h-12 w-auto">
+                <img src="https://mapsily.com/wp-content/uploads/2026/04/Mapsily-wihte-logo.png" alt="Mapsily Logo" class="h-12 w-auto">
             </a>
         </div>
 

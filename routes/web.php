@@ -24,7 +24,7 @@ Route::prefix('admin')->middleware(['auth', App\Http\Middleware\IsAdmin::class])
     Route::get('/users', [App\Http\Controllers\Admin\AdminController::class, 'users'])->name('admin.users');
     Route::get('/leads', [App\Http\Controllers\Admin\AdminController::class, 'leads'])->name('admin.leads');
     Route::get('/leads/export', [App\Http\Controllers\Admin\AdminController::class, 'exportLeads'])->name('admin.leads.export');
-    
+
     Route::get('/pricing', [App\Http\Controllers\PricingSettingController::class, 'index'])->name('admin.pricing.index');
     Route::patch('/pricing', [App\Http\Controllers\PricingSettingController::class, 'update'])->name('admin.pricing.update');
 
@@ -45,5 +45,6 @@ Route::middleware('auth')->group(function () {
 // OTP Verification Routes
 Route::get('/verify-email-code', [App\Http\Controllers\Auth\EmailVerificationController::class, 'show'])->name('verification.code');
 Route::post('/verify-email-code', [App\Http\Controllers\Auth\EmailVerificationController::class, 'verify'])->name('verification.verify');
+Route::post('/verify-email-code/resend', [App\Http\Controllers\Auth\EmailVerificationController::class, 'resend'])->name('verification.resend');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

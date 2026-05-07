@@ -55,19 +55,30 @@ class ProposalController extends Controller
         
         // 2. Define storage path
         $fileName = 'proposal_' . $calculationId . '_' . Str::random(8) . '.pdf';
-        $path = 'proposals/' . $fileName;
+        $directory = 'proposals';
+        $path = $directory . '/' . $fileName;
 
-        // 3. Save to storage
-        Storage::disk('public')->put($path, $pdf->output());
+        try {
+            // 3. Ensure directory exists
+            if (!Storage::disk('public')->exists($directory)) {
+                Storage::disk('public')->makeDirectory($directory);
+            }
 
-        // 4. Record in database
-        $proposal = Proposal::create([
-            'user_id'        => auth()->id(),
-            'calculation_id' => $calculation->id,
-            'file_path'      => $path,
-        ]);
+            // 4. Save to storage
+            Storage::disk('public')->put($path, $pdf->output());
 
-        // 5. Stream download or return URL
+            // 5. Record in database
+            $proposal = Proposal::create([
+                'user_id'        => auth()->id(),
+                'calculation_id' => $calculation->id,
+                'file_path'      => $path,
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('PDF Storage Failed: ' . $e->getMessage());
+            // We can still try to download it even if saving fails
+        }
+
+        // 6. Stream download
         return $pdf->download('Mapsily_Marketing_Proposal.pdf');
     }
 }

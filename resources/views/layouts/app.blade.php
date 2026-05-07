@@ -355,7 +355,7 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.store('mapsily', {
-            currency: localStorage.getItem('mapsily_currency') || '{{ get_setting('default_currency', 'USD') }}',
+            currency: '{{ get_setting('default_currency', 'USD') }}',
             symbols: {
                 @foreach(get_currencies() as $c)
                     '{{ $c->code }}': '{{ $c->symbol }}',
@@ -366,16 +366,28 @@
                     '{{ $c->code }}': {{ $c->rate }},
                 @endforeach
             },
+            init() {
+                const saved = localStorage.getItem('mapsily_currency');
+                if (saved && this.rates[saved]) {
+                    this.currency = saved;
+                } else if (!this.rates[this.currency]) {
+                    const first = Object.keys(this.rates)[0];
+                    if (first) this.currency = first;
+                }
+            },
             setCurrency(c) {
                 this.currency = c;
                 localStorage.setItem('mapsily_currency', c);
             },
             format(amt) {
-                let val = (amt || 0) * this.rates[this.currency];
-                let symbol = this.symbols[this.currency];
-                let formatted = Number(val).toLocaleString(undefined, {
-                    minimumFractionDigits: (this.currency === 'KWD' ? 3 : 0), 
-                    maximumFractionDigits: (this.currency === 'KWD' ? 3 : 0)
+                const currencyCode = this.currency || 'USD';
+                const rate = this.rates[currencyCode] || 1;
+                const symbol = this.symbols[currencyCode] || '$';
+                
+                const val = (Number(amt) || 0) * rate;
+                const formatted = Number(val).toLocaleString(undefined, {
+                    minimumFractionDigits: (currencyCode === 'KWD' ? 3 : 0), 
+                    maximumFractionDigits: (currencyCode === 'KWD' ? 3 : 0)
                 });
                 return symbol + formatted;
             }
@@ -389,7 +401,7 @@
             <div class="logo-group">
                 <div class="logo">
                     <a href="/">
-                        <img src="/assets/img/Mapsily-wihte-logo.png" alt="Mapsily Logo">
+                        <img src="https://mapsily.com/wp-content/uploads/2026/04/Mapsily-wihte-logo.png" alt="Mapsily Logo">
                     </a>
                 </div>
                 <nav class="nav-left">
@@ -506,7 +518,7 @@
         <div class="footer-grid">
             <div>
                 <a href="/" class="footer-logo">
-                    <img src="/assets/img/Mapsily-wihte-logo.png" alt="Mapsily Logo">
+                    <img src="https://mapsily.com/wp-content/uploads/2026/04/Mapsily-wihte-logo.png" alt="Mapsily Logo">
                 </a>
                 <p class="footer-about" style="margin-top: 15px; display: flex; align-items: center; gap: 8px;">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">

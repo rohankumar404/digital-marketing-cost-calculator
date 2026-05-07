@@ -4,6 +4,12 @@
         <p class="text-gray-500 text-sm mt-2">We've sent a 6-digit code to <span class="text-brand">{{ $email }}</span>. Enter it below to activate your account.</p>
     </div>
 
+    @if (session('status'))
+        <div class="mb-4 font-medium text-sm text-green-400 text-center">
+            {{ session('status') }}
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('verification.verify') }}">
         @csrf
 
@@ -27,11 +33,19 @@
             </x-primary-button>
         </div>
 
-        <div class="mt-8 pt-6 border-t border-gray-800 text-center">
-            <p class="text-xs text-gray-500">
-                Didn't receive the code? 
-                <a href="{{ route('register') }}" class="text-brand hover:underline">Try registering again</a>
-            </p>
-        </div>
     </form>
+
+    <div class="mt-8 pt-6 border-t border-gray-800 text-center">
+        <div class="text-xs text-gray-500">
+            Didn't receive the code? 
+            <form id="resend-form" method="POST" action="{{ route('verification.resend') }}" class="inline">
+                @csrf
+                <button type="submit" class="text-brand hover:underline focus:outline-none">
+                    Resend Code
+                </button>
+            </form>
+            <span class="mx-1 text-gray-700">|</span>
+            <a href="{{ route('register') }}" class="text-brand hover:underline">Try registering again</a>
+        </div>
+    </div>
 </x-guest-layout>

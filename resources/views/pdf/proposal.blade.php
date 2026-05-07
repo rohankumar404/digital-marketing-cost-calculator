@@ -19,7 +19,33 @@
 </head>
 <body>
     <div class="header">
-        <img src="{{ public_path('assets/img/mapsily-logo.png') }}" alt="Mapsily Logo" style="height: 40px; margin-bottom: 15px;">
+        @php
+            $logoUrl = 'https://mapsily.com/wp-content/uploads/2026/01/mapsily-logo-scaled.png';
+            $logoData = $logoUrl; // Fallback to URL if base64 fails
+            
+            try {
+                // Try local path first (assuming mapsily-logo-scaled.png might exist or fallback to white logo if dark isn't local)
+                $localPath = public_path('assets/img/mapsily-logo-scaled.png');
+                if (!file_exists($localPath)) {
+                    $localPath = public_path('assets/img/Mapsily-wihte-logo.png'); // fallback to what we know exists locally
+                }
+
+                if (file_exists($localPath)) {
+                    $type = pathinfo($localPath, PATHINFO_EXTENSION);
+                    $data = file_get_contents($localPath);
+                    $logoData = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                } else {
+                    // Try external dark logo URL and convert to base64
+                    $data = @file_get_contents($logoUrl);
+                    if ($data) {
+                        $logoData = 'data:image/png;base64,' . base64_encode($data);
+                    }
+                }
+            } catch (\Exception $e) {
+                // Keep the URL as fallback
+            }
+        @endphp
+        <img src="{{ $logoData }}" alt="Mapsily Logo" style="height: 40px; margin-bottom: 15px;">
         <h1>Digital Marketing Proposal</h1>
         <p>Prepared for: {{ $calculation->industry }} | {{ $calculation->business_type }}</p>
     </div>
